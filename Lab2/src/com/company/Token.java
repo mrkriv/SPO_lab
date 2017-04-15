@@ -38,6 +38,6 @@ class Token
 	@Override
 	public String toString()
 	{
-		return String.format("%s: %s [%d-%d]", lexeme, value, start, end);
+		return String.format("[%d-%d] %s %s", start, end, lexeme, value);
 	}
 }
