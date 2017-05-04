@@ -1,82 +1,43 @@
 package com.company;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.company.Node.BodyNode;
+
+import java.util.List;
 
 public class Main
 {
 	public static void main(String[] args)
 	{
-//		String source = "bool g= 4 ; \n" +
-//				"int h = g;\n" +
-//				"h += 5+ g-7;";
 		String source =
-						"float count = 5;" +
-						"if (count == 5) " +
-						"{" +
-						"	bool qwe = false;" +
-						"}" +
+						"float count = 5;\n" +
+						"if (count == 5) \n" +
+						"{\n" +
+						"	bool qwe = false;\n" +
+						"}\n" +
 						"if (count < 8)\n"+
 						"{\n" +
 						"	int j = i;\n"	+
-						"	int h = 5;" +
+						"	int h = 5;\n" +
 						"	while(j > 0){\n" +
 						"		h *= j + 2 - 57;\n" +
-						"	}" +
+						"	}\n" +
 						"}";
 
 
 		System.out.println("Source:");
 		System.out.println(source);
 
-		System.out.println("\nLexer:");
-		List<Token> tokens = lexer(source);
+		Lexer lexer = new Lexer();
+		Parcer parcer = new Parcer();
 
+		List<Token> tokens = lexer.run(source);
+
+		System.out.println("\nLexer:");
 		tokens.forEach(System.out::println);
 
-		Parcer parcer = new Parcer(tokens);
+		BodyNode root = parcer.run(tokens);
 
-		try
-		{
-			System.out.println("\nParcer:");
-			parcer.run();
-			parcer.DebugLog.forEach(System.out::print);
-		}
-		catch(ParceExeption parceExeption)
-		{
-			parcer.DebugLog.forEach(System.out::print);
-			System.out.println("Parcer error: " + parceExeption.getMessage());
-		}
-	}
-
-	private static List<Token> lexer(String text)
-	{
-		text += " ";
-		List<Token> tokens = new ArrayList<>();
-
-		for(int i = 0; i < text.length(); )
-		{
-			List<Lexeme> foundOld = new ArrayList<>();
-			List<Lexeme> found = new ArrayList<>();
-
-			int offest;
-			for(offest = 0; offest + 1 < text.length() && (!found.isEmpty() || offest == 0); offest++)
-			{
-				foundOld = found;
-				String buff = text.substring(i, i + offest + 1);
-
-				found = Lexeme.getLexems().stream().filter(lex -> lex.isMatch(buff)).collect(Collectors.toList());
-			}
-
-			if(found.isEmpty() && !foundOld.isEmpty())
-			{
-				foundOld.sort((o1, o2) -> Integer.compare(o1.getPriority(), o2.getPriority()));
-				tokens.add(new Token(foundOld.get(0), text.substring(i, --offest + i), i, i + offest));
-			}
-
-			i += offest;
-		}
-
-		return tokens;
+		System.out.println("\nParcer:");
+		System.out.println(root);
 	}
 }

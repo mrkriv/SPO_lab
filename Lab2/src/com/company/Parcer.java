@@ -1,8 +1,10 @@
 package com.company;
 
+import com.company.Node.*;
 import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /*
 	* expr -> var_def | while | if | var_assign | LINE_END
@@ -18,23 +20,30 @@ import java.util.List;
 public class Parcer
 {
 	private List<Token> tokens;
-	private List<Variable> Variable;
 	private List<Pair<Integer, String>> errors;
 	private int index;
-	public List<String> DebugLog;
+	private Stack<Node> nodes;
 
-	Parcer(List<Token> tokens)
+	BodyNode run(List<Token> tokens)
 	{
-		this.tokens = tokens;
-	}
-
-	void run() throws ParceExeption
-	{
-		DebugLog = new ArrayList<>();
-		Variable = new ArrayList<>();
 		errors = new ArrayList<>();
+		nodes = new Stack<>();
+		this.tokens = tokens;
 
-		expr();
+		BodyNode root = new BodyNode();
+		nodes.push(root);
+
+		try
+		{
+			expr();
+		}
+		catch(ParceExeption parceExeption)
+		{
+			System.out.println("Parcer error: " + parceExeption.getMessage());
+			return null;
+		}
+
+		return root;
 	}
 
 	// expr -> var_def | while | if | var_assign | LINE_END
@@ -42,9 +51,10 @@ public class Parcer
 	{
 		while(tokens.size() > index)
 		{
-			DebugLog.forEach(System.out::print);
-			DebugLog.clear();
 			errors.clear();
+
+			if(check(Terminals.BODY_CLOSE))
+				return;
 
 			if(	tryStep(Parcer::var_def) ||
 				tryStep(Parcer::var_assign)	||
@@ -52,9 +62,6 @@ public class Parcer
 				tryStep(Parcer::while_operator)	||
 				tryStep(Parcer::line_end))
 				continue;
-
-			if(tryStep(Parcer::body_close))
-				return;
 
 			if(!errors.isEmpty())
 			{
@@ -70,55 +77,59 @@ public class Parcer
 			}
 
 			step();
-			//throw new ParceExeption("Не верная синтаксическая конструкция");
 		}
 	}
 
 	// while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
 	private void while_operator() throws ParceExeption
 	{
-		log("Begin while loop");
+		WhileNode loop = new WhileNode();
+		addAndPushNode(loop);
 
 		checkAndStep(Terminals.WHILE_OP);
 		checkAndStep(Terminals.BRACED_OPEN);
-		condition();
+		loop.condition = condition();
 		checkAndStep(Terminals.BRACED_CLOSE);
 
-		log("While body:");
 		checkAndStep(Terminals.BODY_OPEN);
 		expr();
-		//checkAndStep(Terminals.BODY_CLOSE);
-
-		log("End while loop");
+		checkAndStep(Terminals.BODY_CLOSE);
+		nodes.pop();
 	}
 
 	// IF_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
 	private void if_operator() throws ParceExeption
 	{
-		log("Begin if block");
+		BranchNode branch = new BranchNode();
+		addAndPushNode(branch);
 
 		checkAndStep(Terminals.IF_OF);
 		checkAndStep(Terminals.BRACED_OPEN);
-		condition();
+		branch.condition = condition();
 		checkAndStep(Terminals.BRACED_CLOSE);
 
-		log("If block body:");
 		checkAndStep(Terminals.BODY_OPEN);
 		expr();
-		//checkAndStep(Terminals.BODY_CLOSE);
-
-		log("End if block");
+		checkAndStep(Terminals.BODY_CLOSE);
+		nodes.pop();
 	}
 
 	// condition -> value CONDITION_OP value
-	private void condition() throws ParceExeption
+	private ConditionNode condition() throws ParceExeption
 	{
-		logf("Condition:\n\t");
-		value();
+		ConditionNode node = new ConditionNode();
 
-		logf("\tOperator %s\n", current().getValue());
-		checkAndStep(Terminals.CONDITION_OP);
+		nodes.push(node.left);
 		value();
+		nodes.pop();
+
+		node.operator = checkAndStep(Terminals.CONDITION_OP);
+
+		nodes.push(node.right);
+		value();
+		nodes.pop();
+
+		return node;
 	}
 
 	// var_def -> VAR_TYPE NAME ASSIGN_OP value LINE_END
@@ -127,19 +138,17 @@ public class Parcer
 		String type = checkAndStep(Terminals.VAR_TYPE);
 		String name = checkAndStep(Terminals.NAME);
 
-		logf("Define var %s as %s\n", name, type);
-
-		Variable.add(new Variable(type, name));
+		addNode(new VarDefineNode(type, name));
 
 		if(stepIF(Terminals.ASSIGN_OP))
 		{
-			logf("\tAssign (%s) to var %s\n\t\t", current().getValue(), name);
+			addAndPushNode(new AssignNode(name));
 			value();
+			nodes.pop();
 		}
 
 		checkAndStep(Terminals.LINE_END);
 	}
-
 
 	// var_assign -> VAR_NAME ASSIGN_OP value LINE_END
 	private void var_assign() throws ParceExeption
@@ -147,19 +156,19 @@ public class Parcer
 		String name = checkAndStep(Terminals.NAME);
 		checkAndStep(Terminals.ASSIGN_OP);
 
-		logf("Assign (%s) to var %s\n\t", tokens.get(index-1).getValue(), name);
+		addAndPushNode(new AssignNode(name));
 		value();
+		nodes.pop();
 
 		checkAndStep(Terminals.LINE_END);
 	}
-
 
 	// (const_value|NAME) (MATH_OP value)?
 	private void value() throws ParceExeption
 	{
 		if(check(Terminals.NAME))
 		{
-			logf("Value %s (name)\n", current().getValue());
+			addNode(new NameNode(current().getValue()));
 			step();
 		}
 		else
@@ -167,43 +176,28 @@ public class Parcer
 
 		if(stepIF(Terminals.MATH_OP))
 		{
-			logf("\t %s ", tokens.get(index-1).getValue());
+			addNode(new MathOperationNode(tokens.get(index-1).getValue()));
 			value();
 		}
 	}
 
-
 	// DIGIT | DIGIT_NATURAL | BOOLEAN
 	private void const_value() throws ParceExeption
 	{
-		if(check(Terminals.DIGIT))
+		if(	check(Terminals.DIGIT) ||
+			check(Terminals.DIGIT_NATURAL)||
+			check(Terminals.BOOLEAN))
 		{
-			logf("Value %s (digit)\n", current().getValue());
-			step();
-		}
-		else if(check(Terminals.DIGIT_NATURAL))
-		{
-			logf("Value %s (natural digit)\n", current().getValue());
-			step();
-		}
-		else if(check(Terminals.BOOLEAN))
-		{
-			logf("Value %s (boolean)\n", current().getValue());
+			addNode(new ConstantNode(current().getValue(), current().getLexeme().getType()));
 			step();
 		}
 		else
 			throw new ParceExeption("Неверный тип, ожидалось число или логическое значение");
 	}
 
-
 	private void line_end() throws ParceExeption
 	{
 		checkAndStep(Terminals.LINE_END);
-	}
-
-	private void body_close() throws ParceExeption
-	{
-		checkAndStep(Terminals.BODY_CLOSE);
 	}
 
 
@@ -217,7 +211,8 @@ public class Parcer
 	private boolean tryStep(ParcerFunction method) throws ParceExeption
 	{
 		int startIndex = index;
-		int debugLogIndex = DebugLog.size();
+		int nodesIndex = nodes.size();
+		int nodesChildIndex = nodes.lastElement() instanceof BodyNode ? ((BodyNode) nodes.lastElement()).getSize() : 0;
 
 		try
 		{
@@ -225,11 +220,16 @@ public class Parcer
 		}
 		catch(ParceExeption exeption)
 		{
+			//backtrack...
+
 			errors.add(new Pair<>(index, exeption.getMessage()));
 			index = startIndex;
 
-			while(DebugLog.size() > debugLogIndex)
-				DebugLog.remove(DebugLog.size() - 1);
+			while(nodes.size() > nodesIndex)
+				nodes.pop();
+
+			if(nodes.lastElement() instanceof BodyNode)
+				((BodyNode) nodes.lastElement()).backtrack(nodesChildIndex);
 
 			return false;
 		}
@@ -240,7 +240,7 @@ public class Parcer
 	{
 		if(check(type))
 		{
-			index++;
+			step();
 			return true;
 		}
 		return false;
@@ -275,13 +275,14 @@ public class Parcer
 		++index;
 	}
 
-	private void logf(String format, Object ... args)
+	private void addNode(Node node)
 	{
-		DebugLog.add(String.format(format, args));
+		((BodyNode)nodes.lastElement()).addChild(node);
 	}
 
-	private void log(String message)
+	private void addAndPushNode(Node node)
 	{
-		DebugLog.add(message + "\n");
+		((BodyNode)nodes.lastElement()).addChild(node);
+		nodes.push(node);
 	}
 }
