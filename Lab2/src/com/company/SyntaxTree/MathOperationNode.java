@@ -1,8 +1,17 @@
-package com.company.Node;
+package com.company.SyntaxTree;
+
+import com.company.BuildExeption;
+import java.util.List;
 
 public class MathOperationNode extends Node
 {
 	private String name;
+
+	@Override
+	public void compile(List<Integer> opcodes, List<String> varTable) throws BuildExeption
+	{
+
+	}
 
 	public MathOperationNode(String name) {
 		this.name = name;

@@ -1,4 +1,9 @@
-package com.company.Node;
+package com.company.SyntaxTree;
+
+import com.company.BuildExeption;
+import com.company.VirtualMachine.Opcode;
+
+import java.util.List;
 
 public class AssignNode extends ValueBody
 {
@@ -7,6 +12,18 @@ public class AssignNode extends ValueBody
 	public AssignNode(String name)
 	{
 		this.name = name;
+	}
+
+	@Override
+	public void compile(List<Integer> opcodes, List<String> varTable) throws BuildExeption
+	{
+		if(!varTable.contains(name))
+			throw new BuildExeption("Переменная '%s' не существует", name);
+
+		super.compile(opcodes, varTable);
+
+		opcodes.add(Opcode.pop.ordinal());
+		opcodes.add(varTable.indexOf(name));
 	}
 
 	@Override

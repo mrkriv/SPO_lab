@@ -16,9 +16,9 @@ public class Lexer
 		addLex(Terminals.WHILE_OP, 		"^while$");
 		addLex(Terminals.DIGIT, 		"^[0-9]+$");
 		addLex(Terminals.DIGIT_NATURAL, "^[0-9]?\\.[0-9]+$");
+		addLex(Terminals.BOOLEAN, 		"^(true|false)$");
 		addLex(Terminals.NAME, 			"^[a-zA-Z_]\\w*$");
 		addLex(Terminals.UNAR_OP, 		"^(\\+\\+|--)$");
-		addLex(Terminals.BOOLEAN, 		"^(true|false)$");
 		addLex(Terminals.CONDITION_OP, 	"^(<|>|<=|>=|==)$");
 		addLex(Terminals.MATH_OP, 		"^(-|\\+|\\*|\\/)$");
 		addLex(Terminals.ASSIGN_OP,		"^(=|\\*=|\\+=|-=|\\/=)$");

@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Node.*;
+import com.company.SyntaxTree.*;
 import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,30 +24,22 @@ public class Parcer
 	private int index;
 	private Stack<Node> nodes;
 
-	BodyNode run(List<Token> tokens)
+	BodyNode run(List<Token> tokens) throws BuildExeption
 	{
 		errors = new ArrayList<>();
 		nodes = new Stack<>();
 		this.tokens = tokens;
 
-		BodyNode root = new BodyNode();
+		BodyNode root = new RootBody();
 		nodes.push(root);
 
-		try
-		{
-			expr();
-		}
-		catch(ParceExeption parceExeption)
-		{
-			System.out.println("Parcer error: " + parceExeption.getMessage());
-			return null;
-		}
+		expr();
 
 		return root;
 	}
 
 	// expr -> var_def | while | if | var_assign | LINE_END
-	private void expr() throws ParceExeption
+	private void expr() throws BuildExeption
 	{
 		while(tokens.size() > index)
 		{
@@ -81,7 +73,7 @@ public class Parcer
 	}
 
 	// while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
-	private void while_operator() throws ParceExeption
+	private void while_operator() throws BuildExeption
 	{
 		WhileNode loop = new WhileNode();
 		addAndPushNode(loop);
@@ -98,7 +90,7 @@ public class Parcer
 	}
 
 	// IF_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
-	private void if_operator() throws ParceExeption
+	private void if_operator() throws BuildExeption
 	{
 		BranchNode branch = new BranchNode();
 		addAndPushNode(branch);
@@ -115,7 +107,7 @@ public class Parcer
 	}
 
 	// condition -> value CONDITION_OP value
-	private ConditionNode condition() throws ParceExeption
+	private ConditionNode condition() throws BuildExeption
 	{
 		ConditionNode node = new ConditionNode();
 
@@ -133,7 +125,7 @@ public class Parcer
 	}
 
 	// var_def -> VAR_TYPE NAME ASSIGN_OP value LINE_END
-	private void var_def() throws ParceExeption
+	private void var_def() throws BuildExeption
 	{
 		String type = checkAndStep(Terminals.VAR_TYPE);
 		String name = checkAndStep(Terminals.NAME);
@@ -151,7 +143,7 @@ public class Parcer
 	}
 
 	// var_assign -> VAR_NAME ASSIGN_OP value LINE_END
-	private void var_assign() throws ParceExeption
+	private void var_assign() throws BuildExeption
 	{
 		String name = checkAndStep(Terminals.NAME);
 		checkAndStep(Terminals.ASSIGN_OP);
@@ -164,7 +156,7 @@ public class Parcer
 	}
 
 	// (const_value|NAME) (MATH_OP value)?
-	private void value() throws ParceExeption
+	private void value() throws BuildExeption
 	{
 		if(check(Terminals.NAME))
 		{
@@ -182,7 +174,7 @@ public class Parcer
 	}
 
 	// DIGIT | DIGIT_NATURAL | BOOLEAN
-	private void const_value() throws ParceExeption
+	private void const_value() throws BuildExeption
 	{
 		if(	check(Terminals.DIGIT) ||
 			check(Terminals.DIGIT_NATURAL)||
@@ -192,10 +184,10 @@ public class Parcer
 			step();
 		}
 		else
-			throw new ParceExeption("Неверный тип, ожидалось число или логическое значение");
+			throw new BuildExeption("Неверный тип, ожидалось число или логическое значение");
 	}
 
-	private void line_end() throws ParceExeption
+	private void line_end() throws BuildExeption
 	{
 		checkAndStep(Terminals.LINE_END);
 	}
@@ -205,10 +197,10 @@ public class Parcer
 
 	@FunctionalInterface
 	interface ParcerFunction {
-		void invoke(Parcer self) throws ParceExeption;
+		void invoke(Parcer self) throws BuildExeption;
 	}
 
-	private boolean tryStep(ParcerFunction method) throws ParceExeption
+	private boolean tryStep(ParcerFunction method) throws BuildExeption
 	{
 		int startIndex = index;
 		int nodesIndex = nodes.size();
@@ -218,7 +210,7 @@ public class Parcer
 		{
 			method.invoke(this);
 		}
-		catch(ParceExeption exeption)
+		catch(BuildExeption exeption)
 		{
 			//backtrack...
 
@@ -236,7 +228,7 @@ public class Parcer
 		return true;
 	}
 
-	private boolean stepIF(Terminals type) throws ParceExeption
+	private boolean stepIF(Terminals type) throws BuildExeption
 	{
 		if(check(type))
 		{
@@ -246,26 +238,26 @@ public class Parcer
 		return false;
 	}
 
-	private boolean check(Terminals type)throws ParceExeption
+	private boolean check(Terminals type)throws BuildExeption
 	{
 		return current().getLexeme().getType() == type;
 	}
 
-	private String checkAndStep(Terminals type) throws ParceExeption
+	private String checkAndStep(Terminals type) throws BuildExeption
 	{
 		Token token = current();
 
 		if(token.getLexeme().getType() != type)
-			throw new ParceExeption("Неверная синтаксическая конструкция, ожидалось " + type.toString());
+			throw new BuildExeption("Неверная синтаксическая конструкция, ожидалось " + type.toString());
 
 		step();
 		return token.getValue();
 	}
 
-	private Token current() throws ParceExeption
+	private Token current() throws BuildExeption
 	{
 		if(index >= tokens.size())
-			throw new ParceExeption("Непредвиденный конец инструкций");
+			throw new BuildExeption("Непредвиденный конец инструкций");
 
 		return tokens.get(index);
 	}

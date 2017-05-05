@@ -1,4 +1,6 @@
-package com.company.Node;
+package com.company.SyntaxTree;
+
+import com.company.BuildExeption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +8,20 @@ import java.util.List;
 public class BodyNode extends Node
 {
 	protected List<Node> childs = new ArrayList<>();
+
+	@Override
+	public void compile(List<Integer> opcodes, List<String> varTable) throws BuildExeption
+	{
+		int varCount = varTable.size();
+
+		for(Node node : childs)
+		{
+			node.compile(opcodes, varTable);
+		}
+
+		while(varTable.size() > varCount)
+			varTable.remove(varTable.size() - 1);
+	}
 
 	public void addChild(Node node)
 	{
