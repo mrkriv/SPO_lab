@@ -9,29 +9,37 @@ import java.util.Stack;
 public class ValueBody extends BodyNode
 {
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable) throws BuildExeption
+	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
 	{
-		Stack<Node> operands = new Stack<>();
-		Stack<Node> operators = new Stack<>();
+		Stack<MathOperationNode> operators = new Stack<>();
 		Stack<Node> result = new Stack<>();
-
 
 		for(Node node : childs)
 		{
+			if(node instanceof MathOperationNode)
+			{
+				MathOperationNode operator = ((MathOperationNode)node);
 
+				while(!operators.isEmpty() && operators.lastElement().getPrior() > operator.getPrior())
+				{
+					result.push(node);
+				}
+
+				operators.push(operator);
+			}
+			else
+			{
+				result.push(node);
+			}
 		}
+
+		result.addAll(operators);
 
 		if(result.isEmpty())
 			throw new BuildExeption("Требуется значение");
 
-		if(!operands.isEmpty())
-			throw new BuildExeption("Некорректное математическое выражение, ожидался оператор");
-
-		if(!operators.isEmpty())
-			throw new BuildExeption("Некорректное математическое выражение, ожидался операнд");
-
 		childs = new ArrayList<>(result);
 
-		super.compile(opcodes, varTable);
+		super.compile(opcodes, varTable, methodTable);
 	}
 }

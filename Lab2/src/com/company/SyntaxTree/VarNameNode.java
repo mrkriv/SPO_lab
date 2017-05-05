@@ -5,14 +5,14 @@ import com.company.VirtualMachine.Opcode;
 
 import java.util.List;
 
-public class NameNode extends Node
+public class VarNameNode extends Node
 {
 	private String name;
 
-	public NameNode(String name) {this.name = name;}
+	public VarNameNode(String name) {this.name = name;}
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable) throws BuildExeption
+	public void compile(List<Integer> opcodes, List<String> varTable, List<String>methodTable) throws BuildExeption
 	{
 		if(!varTable.contains(name))
 			throw new BuildExeption("Переменная '%s' не существует", name);
