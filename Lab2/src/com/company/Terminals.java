@@ -2,6 +2,9 @@ package com.company;
 
 public enum Terminals
 {
+	COMMENT_LINE,
+	COMMENT_START,
+	COMMENT_END,
 	VAR_TYPE,
 	NAME,
 	IF_OF,

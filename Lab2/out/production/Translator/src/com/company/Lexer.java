@@ -10,6 +10,10 @@ public class Lexer
 
 	Lexer()
 	{
+		addLex(Terminals.COMMENT_LINE,	"^//$");
+		addLex(Terminals.COMMENT_START, "^/\\*$");
+		addLex(Terminals.COMMENT_END, 	"^\\*/$");
+
 		addLex(Terminals.VAR_TYPE, 		"^(int|bool|double|float|char|void|byte|short|long)$");
 		addLex(Terminals.IF_OF, 		"^if$");
 		addLex(Terminals.FOR_OF, 		"^for$");
@@ -42,6 +46,7 @@ public class Lexer
 	{
 		text += " ";
 		List<Token> tokens = new ArrayList<>();
+		boolean ignore = false;
 
 		for(int i = 0; i < text.length(); )
 		{
@@ -60,7 +65,27 @@ public class Lexer
 			if(found.isEmpty() && !foundOld.isEmpty())
 			{
 				foundOld.sort((o1, o2) -> Integer.compare(o1.getPriority(), o2.getPriority()));
-				tokens.add(new Token(foundOld.get(0), text.substring(i, --offest + i), i, i + offest));
+				Lexeme lexeme = foundOld.get(0);
+
+				offest--;
+
+				if(lexeme.getType() == Terminals.COMMENT_START)
+				{
+					ignore = true;
+				}
+				else if(lexeme.getType() == Terminals.COMMENT_END)
+				{
+					ignore = false;
+				}
+				else if(!ignore)
+				{
+					if(lexeme.getType() == Terminals.COMMENT_LINE)
+					{
+						i = text.indexOf('\n', i) + 1 - ++offest;
+					}
+					else
+						tokens.add(new Token(lexeme, text.substring(i, offest + i), i, i + offest));
+				}
 			}
 
 			i += offest;
