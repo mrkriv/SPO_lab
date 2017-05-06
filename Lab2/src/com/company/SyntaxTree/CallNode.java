@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class CallNode extends BodyNode
 {
-	private String name;
+	private final String name;
 
 	public CallNode(String name) {this.name = name;}
 

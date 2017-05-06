@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BodyNode extends Node
 {
-	protected List<Node> childs = new ArrayList<>();
+	List<Node> childs = new ArrayList<>();
 
 	@Override
 	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption

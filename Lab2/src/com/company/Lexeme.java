@@ -1,14 +1,12 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 class Lexeme
 {
-	private Pattern pattern;
+	private final Pattern pattern;
 	private final int priority;
-	private Terminals type;
+	private final Terminals type;
 
 	Lexeme(Terminals type, String regex, int priority)
 	{

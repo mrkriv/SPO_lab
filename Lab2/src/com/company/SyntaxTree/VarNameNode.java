@@ -7,7 +7,7 @@ import java.util.List;
 
 public class VarNameNode extends Node
 {
-	private String name;
+	private final String name;
 
 	public VarNameNode(String name) {this.name = name;}
 

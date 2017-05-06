@@ -1,10 +1,10 @@
 package com.company.VirtualMachine;
 
 
-public class Frame
+class Frame
 {
 	public int pointer;
-	public int[] localVariable;
+	public final int[] localVariable;
 
 	public Frame(int pointer, int stackSize)
 	{

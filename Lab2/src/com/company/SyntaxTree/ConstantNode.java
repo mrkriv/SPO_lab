@@ -9,8 +9,8 @@ import java.util.Objects;
 
 public class ConstantNode extends Node
 {
-	public String value;
-	public Terminals type;
+	private final String value;
+	private final Terminals type;
 
 	public ConstantNode(String name, Terminals type) {
 		this.value = name;

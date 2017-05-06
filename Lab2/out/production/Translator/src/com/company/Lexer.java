@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lexer
+class Lexer
 {
 	private List<Lexeme> lexems = new ArrayList<>();
 

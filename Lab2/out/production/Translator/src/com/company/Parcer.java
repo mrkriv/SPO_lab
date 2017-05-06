@@ -19,7 +19,7 @@ import java.util.Stack;
 	* const_value -> DIGIT | DIGIT_NATURAL | BOOLEAN
 */
 
-public class Parcer
+class Parcer
 {
 	private List<Token> tokens;
 	private List<Pair<Integer, String>> errors;

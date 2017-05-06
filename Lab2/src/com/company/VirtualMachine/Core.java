@@ -1,6 +1,5 @@
 package com.company.VirtualMachine;
 
-import java.io.IOException;
 import java.util.*;
 
 public class Core
@@ -16,34 +15,6 @@ public class Core
 	public String decompile(List<Integer> program)
 	{
 		Map<Opcode, Integer> sizeMap = new HashMap<>();
-
-		//		frameStack = new Stack<>();
-		//		frameStack.push(new Frame(0, 32));
-		//
-		//		stack = new Stack<>();
-		//		for(int i = 0; i < Opcode.values().length * 3; i++)
-		//			stack.push(1);
-		//
-		//		for(Opcode opcod : Opcode.values())
-		//		{
-		//			if(opcod == Opcode.callread || opcod == Opcode.callprint)
-		//			{
-		//				sizeMap.put(opcod, 1);
-		//				continue;
-		//			}
-		//
-		//			this.program = new ArrayList<>();
-		//			this.program.add(opcod.ordinal());
-		//			this.program.add(0);
-		//			this.program.add(0);
-		//			this.program.add(0);
-		//			this.program.add(0);
-		//
-		//			frameStack.push(new Frame(0, 32));
-		//			step();
-		//
-		//			sizeMap.put(opcod, getPointer());
-		//		}
 
 		sizeMap.put(Opcode.nop, 1);
 		sizeMap.put(Opcode.ret, 1);
@@ -67,10 +38,10 @@ public class Core
 		while(pointer < program.size())
 		{
 			Opcode opcod = Opcode.values()[program.get(pointer++)];
-			sb.append(opcod.toString() + "\t");
+			sb.append(opcod.toString()).append("\t");
 
 			for(int i = 1; i < sizeMap.get(opcod) && pointer < program.size(); i++)
-				sb.append("\t" + program.get(pointer++).toString());
+				sb.append("\t").append(program.get(pointer++).toString());
 
 			sb.append("\n");
 		}

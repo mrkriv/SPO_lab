@@ -19,7 +19,7 @@ import java.util.Stack;
 	* const_value -> DIGIT | DIGIT_NATURAL | BOOLEAN
 */
 
-public class Parcer
+class Parcer
 {
 	private List<Token> tokens;
 	private List<Pair<Integer, String>> errors;
@@ -236,7 +236,7 @@ public class Parcer
 		void invoke(Parcer self) throws BuildExeption;
 	}
 
-	private boolean tryStep(ParcerFunction method) throws BuildExeption
+	private boolean tryStep(ParcerFunction method)
 	{
 		int startIndex = index;
 		int nodesIndex = nodes.size();

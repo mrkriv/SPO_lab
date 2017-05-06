@@ -7,7 +7,7 @@ import java.util.List;
 
 public class AssignNode extends ValueBody
 {
-	String name;
+	private final String name;
 
 	public AssignNode(String name)
 	{
