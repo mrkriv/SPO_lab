@@ -13,7 +13,7 @@ import java.util.Stack;
 	* var_assign -> VAR_NAME ASSIGN_OP value LINE_END
 	* call_e -> call LINE_END
 	* call -> NAME BRACED_OPEN (value (COMMA value)* )? BRACED_CLOSE LINE_END
-	* value -> (const_value|NAME|call) (MATH_OP value)?
+	* value -> ( BRACED_OPEN value BRACED_OPEN ) | ( (const_value|NAME|call) (MATH_OP value)? )
 	* while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE body
 	* if -> IF_OP BRACED_OPEN condition BRACED_CLOSE body
 	* condition -> value CONDITION_OP value
@@ -213,19 +213,28 @@ class Parcer
 		checkAndStep(Terminals.LINE_END);
 	}
 
-	// (const_value|NAME) (MATH_OP value)?
+	// value -> ( BRACED_OPEN value BRACED_OPEN ) | ( (const_value|NAME|call) (MATH_OP value)? )
 	private void value() throws BuildExeption
 	{
-		if(check(Terminals.NAME))
+		if(stepIF(Terminals.BRACED_OPEN))
 		{
-			if(!tryStep(Parcer::call))
-			{
-				addNode(new VarNameNode(current().getValue()));
-				step();
-			}
+			addAndPushNode(new ValueBody());
+			value();
+			checkAndStep(Terminals.BRACED_CLOSE);
+			nodes.pop();
 		}
 		else
-			const_value();
+		{
+			if(check(Terminals.NAME))
+			{
+				if(!tryStep(Parcer::call))
+				{
+					addNode(new VarNameNode(current().getValue()));
+					step();
+				}
+			}
+			else const_value();
+		}
 
 		if(stepIF(Terminals.MATH_OP))
 		{
