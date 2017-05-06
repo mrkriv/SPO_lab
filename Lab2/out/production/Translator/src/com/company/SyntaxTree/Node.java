@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Node
 {
-	public abstract void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption;
+	protected abstract void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption;
 
 	@Override
 	public String toString()
@@ -14,7 +14,7 @@ public abstract class Node
 		return print(0).toString();
 	}
 
-	public StringBuilder print(int level)
+	StringBuilder print(int level)
 	{
 		StringBuilder sb = new StringBuilder();
 

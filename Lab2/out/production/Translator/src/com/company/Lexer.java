@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 class Lexer
 {
-	private List<Lexeme> lexems = new ArrayList<>();
+	private final List<Lexeme> lexems = new ArrayList<>();
 
 	Lexer()
 	{
@@ -26,8 +26,8 @@ class Lexer
 		addLex(Terminals.COMMA, 		"^,$");
 		addLex(Terminals.LINE_END, 		"^;$");
 
-		addLex(Terminals.UNAR_OP, 		"^(\\+\\+|--)$");
-		addLex(Terminals.CONDITION_OP, 	"^(<|>|<=|>=|==)$");
+		addLex(Terminals.UNAR_OP, 		"^(!|\\+\\+|--)$");
+		addLex(Terminals.CONDITION_OP, 	"^(==|!=|<|>|<=|>=)$");
 		addLex(Terminals.MATH_OP, 		"^(-|\\+|\\*|\\/)$");
 		addLex(Terminals.ASSIGN_OP,		"^(=|\\*=|\\+=|-=|\\/=)$");
 

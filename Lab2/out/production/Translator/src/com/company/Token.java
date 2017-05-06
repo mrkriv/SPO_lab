@@ -30,11 +30,6 @@ class Token
 		return start;
 	}
 
-	int getEnd()
-	{
-		return end;
-	}
-
 	@Override
 	public String toString()
 	{

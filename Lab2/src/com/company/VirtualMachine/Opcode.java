@@ -8,12 +8,21 @@ public enum Opcode
 	call,
 	jmp,
 
+	jne,
+	jeq,
+	jls,
+	jle,
+	jgr,
+	jge,
+
 	callprint,
 	callread,
 
 	pushm,
 	pushc,
 	pop,
+
+	comps,
 
 	addi,
 	subi,

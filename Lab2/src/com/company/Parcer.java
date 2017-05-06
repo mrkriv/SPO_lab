@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.Stack;
 
 /*
-	* expr -> var_def | while | if | var_assign | call_e | LINE_END
+	* expr -> var_def | while | if | var_assign | call_e | body | LINE_END
+	* body -> BODY_OPEN expr BODY_CLOSE
 	* var_def -> VAR_TYPE NAME ASSIGN_OP value LINE_END
 	* var_assign -> VAR_NAME ASSIGN_OP value LINE_END
 	* call_e -> call LINE_END
 	* call -> NAME BRACED_OPEN (value (COMMA value)* )? BRACED_CLOSE LINE_END
 	* value -> (const_value|NAME|call) (MATH_OP value)?
-	* while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
-	* if -> IF_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
+	* while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE body
+	* if -> IF_OP BRACED_OPEN condition BRACED_CLOSE body
 	* condition -> value CONDITION_OP value
 	* const_value -> DIGIT | DIGIT_NATURAL | BOOLEAN
 */
@@ -40,7 +41,7 @@ class Parcer
 		return root;
 	}
 
-	// expr -> var_def | while | if | var_assign | call_e | LINE_END
+	// expr -> var_def | while | if | var_assign | call_e | body | LINE_END
 	private void expr() throws BuildExeption
 	{
 		while(tokens.size() > index)
@@ -55,6 +56,7 @@ class Parcer
 				tryStep(Parcer::if_operator) ||
 				tryStep(Parcer::while_operator)	||
 				tryStep(Parcer::call_e) ||
+				tryStep(Parcer::body) ||
 				tryStep(Parcer::line_end))
 				continue;
 
@@ -75,7 +77,17 @@ class Parcer
 		}
 	}
 
-	// while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
+	// body -> BODY_OPEN expr BODY_CLOSE
+	private void body() throws BuildExeption
+	{
+		addAndPushNode(new BodyNode());
+		checkAndStep(Terminals.BODY_OPEN);
+		expr();
+		checkAndStep(Terminals.BODY_CLOSE);
+		nodes.pop();
+	}
+
+	// while -> WHILE_OP BRACED_OPEN condition BRACED_CLOSE body
 	private void while_operator() throws BuildExeption
 	{
 		WhileNode loop = new WhileNode();
@@ -92,7 +104,7 @@ class Parcer
 		nodes.pop();
 	}
 
-	// IF_OP BRACED_OPEN condition BRACED_CLOSE BODY_OPEN expr BODY_CLOSE
+	// IF_OP BRACED_OPEN condition BRACED_CLOSE body
 	private void if_operator() throws BuildExeption
 	{
 		BranchNode branch = new BranchNode();

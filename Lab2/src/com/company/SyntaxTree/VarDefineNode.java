@@ -10,8 +10,11 @@ public class VarDefineNode extends Node
 	private final String name;
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String>methodTable) throws BuildExeption
+	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
 	{
+		if(varTable.contains(name))
+			throw new BuildExeption("Переменная '%s' уже обьявленна", name);
+
 		varTable.add(name);
 	}
 

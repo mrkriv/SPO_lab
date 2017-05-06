@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MathOperationNode extends Node
 {
-	private String name;
+	private final String name;
 
 	public MathOperationNode(String name) {
 		this.name = name;

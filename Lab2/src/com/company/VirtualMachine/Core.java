@@ -21,12 +21,21 @@ public class Core
 		sizeMap.put(Opcode.call, 1);
 		sizeMap.put(Opcode.jmp, 2);
 
+		sizeMap.put(Opcode.jne, 2);
+		sizeMap.put(Opcode.jeq, 2);
+		sizeMap.put(Opcode.jls, 2);
+		sizeMap.put(Opcode.jle, 2);
+		sizeMap.put(Opcode.jgr, 2);
+		sizeMap.put(Opcode.jge, 2);
+
 		sizeMap.put(Opcode.callprint, 1);
 		sizeMap.put(Opcode.callread, 1);
 
 		sizeMap.put(Opcode.pushm, 2);
 		sizeMap.put(Opcode.pushc, 2);
 		sizeMap.put(Opcode.pop, 2);
+
+		sizeMap.put(Opcode.comps, 1);
 
 		sizeMap.put(Opcode.addi, 1);
 		sizeMap.put(Opcode.subi, 1);
@@ -38,7 +47,7 @@ public class Core
 		while(pointer < program.size())
 		{
 			Opcode opcod = Opcode.values()[program.get(pointer++)];
-			sb.append(opcod.toString()).append("\t");
+			sb.append(String.format("%03d: %s\t", pointer, opcod.toString()));
 
 			for(int i = 1; i < sizeMap.get(opcod) && pointer < program.size(); i++)
 				sb.append("\t").append(program.get(pointer++).toString());
@@ -81,6 +90,49 @@ public class Core
 				frameStack.lastElement().pointer = readInt();
 				break;
 
+			case jne:
+				destination = readInt();
+				if(!getFrame().flag_equality)
+				{
+					frameStack.lastElement().pointer = destination;
+				}
+				break;
+			case jeq:
+				destination = readInt();
+				if(getFrame().flag_equality)
+				{
+					frameStack.lastElement().pointer = destination;
+				}
+				break;
+			case jls:
+				destination = readInt();
+				if(getFrame().flag_less)
+				{
+					frameStack.lastElement().pointer = destination;
+				}
+				break;
+			case jle:
+				destination = readInt();
+				if(getFrame().flag_equality || getFrame().flag_less)
+				{
+					frameStack.lastElement().pointer = destination;
+				}
+				break;
+			case jgr:
+				destination = readInt();
+				if(getFrame().flag_larger)
+				{
+					frameStack.lastElement().pointer = destination;
+				}
+				break;
+			case jge:
+				destination = readInt();
+				if(getFrame().flag_equality || getFrame().flag_larger)
+				{
+					frameStack.lastElement().pointer = destination;
+				}
+				break;
+
 			case callprint:
 				System.out.printf(">> %d\n", stack.pop());
 				break;
@@ -99,7 +151,15 @@ public class Core
 			case pop:
 				destination = readInt();
 				getFrame().localVariable[destination] = stack.pop();
+				break;
 
+			case comps:
+				value = stack.pop();
+				value = stack.pop() - value;
+
+				getFrame().flag_equality = value == 0;
+				getFrame().flag_larger = value > 0;
+				getFrame().flag_less = value < 0;
 				break;
 
 			case addi:
