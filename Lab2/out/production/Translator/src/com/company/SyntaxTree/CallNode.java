@@ -23,6 +23,10 @@ public class CallNode extends BodyNode
 		if(Objects.equals(name, "print"))
 		{
 			opcodes.add(Opcode.callprint.ordinal());
+		}
+		if(Objects.equals(name, "read"))
+		{
+			opcodes.add(Opcode.callread.ordinal());
 		} else
 		{
 			opcodes.add(Opcode.pushm.ordinal());

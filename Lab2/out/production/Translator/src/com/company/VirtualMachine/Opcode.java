@@ -9,6 +9,7 @@ public enum Opcode
 	jmp,
 
 	callprint,
+	callread,
 
 	pushm,
 	pushc,

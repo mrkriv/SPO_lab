@@ -141,12 +141,17 @@ public class Parcer
 		checkAndStep(Terminals.BRACED_OPEN);
 
 		addAndPushNode(new CallNode(name));
-		do
+
+		if(!check(Terminals.BRACED_CLOSE))
 		{
-			addAndPushNode(new ValueBody());
-			value();
-			nodes.pop();
-		}while(check(Terminals.COMMA));
+			do
+			{
+				addAndPushNode(new ValueBody());
+				value();
+				nodes.pop();
+			}
+			while(check(Terminals.COMMA));
+		}
 
 		checkAndStep(Terminals.BRACED_CLOSE);
 		nodes.pop();

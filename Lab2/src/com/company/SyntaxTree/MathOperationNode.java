@@ -42,7 +42,7 @@ public class MathOperationNode extends Node
 
 			case "*":
 			case "/":
-				return 1;
+				return 2;
 
 			default:
 				return 0;

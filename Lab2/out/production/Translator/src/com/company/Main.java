@@ -30,13 +30,12 @@ public class Main
 
 		Lexer lexer = new Lexer();
 		Parcer parcer = new Parcer();
+		Core vm = new Core();
 
 		List<Token> tokens = lexer.run(source);
 
 		System.out.println("\nLexer:");
 		tokens.forEach(System.out::println);
-
-		List<Integer> opcodes = new ArrayList<>();
 
 		try
 		{
@@ -49,18 +48,21 @@ public class Main
 			methods.add("print");
 			methods.add("read");
 
+			List<Integer> opcodes = new ArrayList<>();
 			root.compile(opcodes, new ArrayList<>(), methods);
+
+			System.out.println("\nDecompile:");
+			System.out.println(vm.decompile(opcodes));
+
+			System.out.println("\nRun...");
+			vm.run(opcodes);
+
+			System.out.println("\nFinished");
 		}
 		catch(BuildExeption exp)
 		{
 			System.out.println("\nError:");
 			System.out.println(exp.getMessage());
 		}
-
-		System.out.println("\nRun...");
-		Core vm = new Core(opcodes);
-		vm.run();
-
-		System.out.println("\nFinished");
 	}
 }
