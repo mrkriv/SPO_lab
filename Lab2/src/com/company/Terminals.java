@@ -8,6 +8,7 @@ public enum Terminals
 	VAR_TYPE,
 	NAME,
 	IF_OF,
+	ELSE,
 	FOR_OF,
 	WHILE_OP,
 	UNAR_OP,

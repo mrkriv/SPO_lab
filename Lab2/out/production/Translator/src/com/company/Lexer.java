@@ -16,6 +16,7 @@ class Lexer
 
 		addLex(Terminals.VAR_TYPE, 		"^(int|bool|double|float|char|void|byte|short|long)$");
 		addLex(Terminals.IF_OF, 		"^if$");
+		addLex(Terminals.ELSE, 			"^else$");
 		addLex(Terminals.FOR_OF, 		"^for$");
 		addLex(Terminals.WHILE_OP, 		"^while$");
 

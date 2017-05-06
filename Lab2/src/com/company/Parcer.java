@@ -118,6 +118,19 @@ class Parcer
 		checkAndStep(Terminals.BODY_OPEN);
 		expr();
 		checkAndStep(Terminals.BODY_CLOSE);
+
+		if(stepIF(Terminals.ELSE))
+		{
+			branch.elseBody = new BodyNode();
+			nodes.push(branch.elseBody);
+
+			checkAndStep(Terminals.BODY_OPEN);
+			expr();
+			checkAndStep(Terminals.BODY_CLOSE);
+
+			nodes.pop();
+		}
+
 		nodes.pop();
 	}
 

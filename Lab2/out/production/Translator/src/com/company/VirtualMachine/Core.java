@@ -47,7 +47,7 @@ public class Core
 		while(pointer < program.size())
 		{
 			Opcode opcod = Opcode.values()[program.get(pointer++)];
-			sb.append(String.format("%03d: %s\t", pointer, opcod.toString()));
+			sb.append(String.format("%03d: %s\t", pointer-1, opcod.toString()));
 
 			for(int i = 1; i < sizeMap.get(opcod) && pointer < program.size(); i++)
 				sb.append("\t").append(program.get(pointer++).toString());

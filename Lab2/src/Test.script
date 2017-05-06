@@ -5,6 +5,13 @@ while(a < 5)
     a = a + 2;
 }
 
+if(a < 2)
+{
+    print(228);
+}else{
+    print(999);
+}
+
 print(a);
 
 /*int b = read();

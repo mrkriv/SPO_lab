@@ -8,6 +8,7 @@ import java.util.List;
 public class BranchNode extends BodyNode
 {
 	public ConditionNode condition = new ConditionNode();
+	public BodyNode elseBody;
 
 	@Override
 	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
@@ -35,7 +36,21 @@ public class BranchNode extends BodyNode
 		int start = opcodes.size();
 		super.compile(opcodes, varTable, methodTable);
 
-		opcodes.set(start - 1, opcodes.size());
+		if(elseBody != null)
+		{
+			opcodes.add(Opcode.jmp.ordinal());
+			opcodes.add(0);
+
+			opcodes.set(start - 1, opcodes.size());
+
+			int startElse = opcodes.size();
+
+			elseBody.compile(opcodes, varTable, methodTable);
+
+			opcodes.set(startElse - 1, opcodes.size());
+		}
+		else
+			opcodes.set(start - 1, opcodes.size());
 	}
 
 	@Override
