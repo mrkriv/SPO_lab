@@ -1,9 +1,10 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 import com.company.VirtualMachine.Opcode;
 
-import java.util.List;
+import java.util.Objects;
 
 public class VarNameNode extends Node
 {
@@ -12,12 +13,24 @@ public class VarNameNode extends Node
 	public VarNameNode(String name) {this.name = name;}
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String>methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
-		if(!varTable.contains(name))
+		if(!m.variables.stream().anyMatch(v -> Objects.equals(v.name, name)))
 			throw new BuildExeption("Переменная '%s' не существует", name);
 
-		opcodes.add(Opcode.pushm.ordinal());
-		opcodes.add(varTable.indexOf(name));
+		m.addOpcode(Opcode.pushm);
+		m.addWord(m.getVariableIndex(name));
+	}
+
+	@Override
+	public StringBuilder print(int level)
+	{
+		StringBuilder sb = super.print(level);
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append(" Name: ");
+		sb.append(name);
+		sb.append("\n");
+
+		return sb;
 	}
 }

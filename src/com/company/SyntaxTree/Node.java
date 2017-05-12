@@ -1,12 +1,11 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
-
-import java.util.List;
+import com.company.Metadata.Compiler;
 
 public abstract class Node
 {
-	protected abstract void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption;
+	protected abstract void compile(Compiler m) throws BuildExeption;
 
 	@Override
 	public String toString()

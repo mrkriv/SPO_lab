@@ -1,9 +1,8 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 import com.company.VirtualMachine.Opcode;
-
-import java.util.List;
 
 public class MathOperationNode extends Node
 {
@@ -14,7 +13,7 @@ public class MathOperationNode extends Node
 	}
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
 		Opcode opced;
 
@@ -29,7 +28,7 @@ public class MathOperationNode extends Node
 				throw new BuildExeption("Неизвестный математический оператор %s", name);
 		}
 
-		opcodes.add(opced.ordinal());
+		m.addWord(opced.ordinal());
 	}
 
 	int getPrior()

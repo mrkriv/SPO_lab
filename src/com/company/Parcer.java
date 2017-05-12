@@ -7,9 +7,12 @@ import java.util.List;
 import java.util.Stack;
 
 /*
-	* expr -> var_def | while | if | var_assign | call_e | body | LINE_END
-	* body -> BODY_OPEN expr BODY_CLOSE
-	* var_def -> VAR_TYPE NAME ASSIGN_OP value LINE_END
+	* expr -> method | LINE_END
+	* expr_body -> var_def | while | if | var_assign | call_e | body | LINE_END
+	* body -> BODY_OPEN expr_body BODY_CLOSE
+	* method -> VAR_TYPE NAME BRACED_OPEN (var_def_simple (COMMA var_def_simple)* )? BRACED_CLOSE body
+	* var_def_simple -> VAR_TYPE NAME
+	* var_def -> var_def_simple (ASSIGN_OP value)? LINE_END
 	* var_assign -> VAR_NAME ASSIGN_OP value LINE_END
 	* call_e -> call LINE_END
 	* call -> NAME BRACED_OPEN (value (COMMA value)* )? BRACED_CLOSE LINE_END
@@ -27,13 +30,13 @@ class Parcer
 	private int index;
 	private Stack<Node> nodes;
 
-	BodyNode run(List<Token> tokens) throws BuildExeption
+	RootBodyNode run(List<Token> tokens) throws BuildExeption
 	{
 		errors = new ArrayList<>();
 		nodes = new Stack<>();
 		this.tokens = tokens;
 
-		BodyNode root = new RootBody();
+		RootBodyNode root = new RootBodyNode();
 		nodes.push(root);
 
 		expr();
@@ -41,7 +44,7 @@ class Parcer
 		return root;
 	}
 
-	// expr -> var_def | while | if | var_assign | call_e | body | LINE_END
+	// expr -> method | LINE_END
 	private void expr() throws BuildExeption
 	{
 		while(tokens.size() > index)
@@ -51,12 +54,7 @@ class Parcer
 			if(check(Terminals.BODY_CLOSE))
 				return;
 
-			if(	tryStep(Parcer::var_def) ||
-				tryStep(Parcer::var_assign)	||
-				tryStep(Parcer::if_operator) ||
-				tryStep(Parcer::while_operator)	||
-				tryStep(Parcer::call_e) ||
-				tryStep(Parcer::body) ||
+			if(	tryStep(Parcer::method) ||
 				tryStep(Parcer::line_end))
 				continue;
 
@@ -77,12 +75,61 @@ class Parcer
 		}
 	}
 
+	// expr_body -> var_def | while | if | var_assign | call_e | body | LINE_END
+	private void expr_body() throws BuildExeption
+	{
+		while(tokens.size() > index)
+		{
+			errors.clear();
+
+			if(check(Terminals.BODY_CLOSE))
+				return;
+
+			if(	tryStep(Parcer::var_def) ||
+				tryStep(Parcer::var_assign)	||
+				tryStep(Parcer::if_operator) ||
+				tryStep(Parcer::while_operator)	||
+				tryStep(Parcer::call_e) ||
+				tryStep(Parcer::body) ||
+				tryStep(Parcer::line_end))
+				continue;
+
+			step();
+		}
+	}
+
 	// body -> BODY_OPEN expr BODY_CLOSE
 	private void body() throws BuildExeption
 	{
 		addAndPushNode(new BodyNode());
 		checkAndStep(Terminals.BODY_OPEN);
-		expr();
+		expr_body();
+		checkAndStep(Terminals.BODY_CLOSE);
+		nodes.pop();
+	}
+
+	// method -> VAR_TYPE NAME BRACED_OPEN (var_def_simple (COMMA var_def_simple)* )? BRACED_CLOSE body
+	private void method() throws BuildExeption
+	{
+		String type = checkAndStep(Terminals.VAR_TYPE);
+		String name = checkAndStep(Terminals.NAME);
+		checkAndStep(Terminals.BRACED_OPEN);
+
+		addAndPushNode(new MethodNode(type, name));
+
+		if(!check(Terminals.BRACED_CLOSE))
+		{
+			do
+			{
+				var_def_simple();
+			}
+			while(check(Terminals.COMMA));
+		}
+
+		checkAndStep(Terminals.BRACED_CLOSE);
+
+		checkAndStep(Terminals.BODY_OPEN);
+		expr_body();
 		checkAndStep(Terminals.BODY_CLOSE);
 		nodes.pop();
 	}
@@ -171,7 +218,7 @@ class Parcer
 		{
 			do
 			{
-				addAndPushNode(new ValueBody());
+				addAndPushNode(new ValueBodyNode());
 				value();
 				nodes.pop();
 			}
@@ -182,13 +229,20 @@ class Parcer
 		nodes.pop();
 	}
 
-	// var_def -> VAR_TYPE NAME ASSIGN_OP value LINE_END
-	private void var_def() throws BuildExeption
+	// var_def_simple -> VAR_TYPE NAME
+	private void var_def_simple() throws BuildExeption
 	{
 		String type = checkAndStep(Terminals.VAR_TYPE);
 		String name = checkAndStep(Terminals.NAME);
 
 		addNode(new VarDefineNode(type, name));
+	}
+
+	// var_def -> var_def_simple ASSIGN_OP value LINE_END
+	private void var_def() throws BuildExeption
+	{
+		var_def_simple();
+		String name = tokens.get(index - 1).getValue();
 
 		if(stepIF(Terminals.ASSIGN_OP))
 		{
@@ -218,7 +272,7 @@ class Parcer
 	{
 		if(stepIF(Terminals.BRACED_OPEN))
 		{
-			addAndPushNode(new ValueBody());
+			addAndPushNode(new ValueBodyNode());
 			value();
 			checkAndStep(Terminals.BRACED_CLOSE);
 			nodes.pop();

@@ -1,14 +1,14 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 
-import java.util.List;
 import java.util.Stack;
 
-public class ValueBody extends BodyNode
+public class ValueBodyNode extends BodyNode
 {
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
 		Stack<MathOperationNode> operators = new Stack<>();
 
@@ -20,20 +20,20 @@ public class ValueBody extends BodyNode
 
 				while(!operators.isEmpty() && operators.lastElement().getPrior() >= operator.getPrior())
 				{
-					operators.pop().compile(opcodes, varTable, methodTable);
+					operators.pop().compile(m);
 				}
 
 				operators.push(operator);
 			}
 			else
 			{
-				node.compile(opcodes, varTable, methodTable);
+				node.compile(m);
 			}
 		}
 
 		while(!operators.isEmpty())
 		{
-			operators.pop().compile(opcodes, varTable, methodTable);
+			operators.pop().compile(m);
 		}
 	}
 }

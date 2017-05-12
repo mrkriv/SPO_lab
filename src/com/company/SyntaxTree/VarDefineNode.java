@@ -1,26 +1,28 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
+import com.company.Metadata.VariableInfo;
 
-import java.util.List;
+import java.util.Objects;
 
 public class VarDefineNode extends Node
 {
-	private final String type;
-	private final String name;
-
-	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
-	{
-		if(varTable.contains(name))
-			throw new BuildExeption("Переменная '%s' уже обьявленна", name);
-
-		varTable.add(name);
-	}
+	public final String type;
+	public final String name;
 
 	public VarDefineNode(String type, String name) {
 		this.type = type;
 		this.name = name;
+	}
+
+	@Override
+	public void compile(Compiler m) throws BuildExeption
+	{
+		if(m.variables.stream().anyMatch(v -> Objects.equals(v.name, name)))
+			throw new BuildExeption("Переменная '%s' уже обьявленна", name);
+
+		m.variables.add(new VariableInfo(type, name));
 	}
 
 	@Override

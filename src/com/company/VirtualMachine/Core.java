@@ -18,7 +18,8 @@ public class Core
 
 		sizeMap.put(Opcode.nop, 1);
 		sizeMap.put(Opcode.ret, 1);
-		sizeMap.put(Opcode.call, 1);
+		sizeMap.put(Opcode.callc, 2);
+		sizeMap.put(Opcode.calls, 1);
 		sizeMap.put(Opcode.jmp, 2);
 
 		sizeMap.put(Opcode.jne, 2);
@@ -43,14 +44,23 @@ public class Core
 		sizeMap.put(Opcode.divi, 1);
 
 		StringBuilder sb = new StringBuilder();
-		int pointer = 1;
+		int pointer = 0;
 		while(pointer < program.size())
 		{
-			Opcode opcod = Opcode.values()[program.get(pointer++)];
-			sb.append(String.format("%03d: %s\t", pointer-1, opcod.toString()));
+			sb.append(String.format("%03d: ", pointer));
 
-			for(int i = 1; i < sizeMap.get(opcod) && pointer < program.size(); i++)
-				sb.append("\t").append(program.get(pointer++).toString());
+			if(Opcode.values().length <= program.get(pointer))
+			{
+				sb.append(program.get(pointer++));
+			}
+			else
+			{
+				Opcode opcod = Opcode.values()[program.get(pointer++)];
+				sb.append(opcod.toString()).append('\t');
+
+				for(int i = 1; i < sizeMap.get(opcod) && pointer < program.size(); i++)
+					sb.append("\t").append(program.get(pointer++).toString());
+			}
 
 			sb.append("\n");
 		}
@@ -82,7 +92,11 @@ public class Core
 			case ret:
 				frameStack.pop();
 				break;
-			case call:
+			case callc:
+				destination = readInt();
+				frameStack.push(new Frame(destination + 1, program.get(destination)));
+				break;
+			case calls:
 				destination = stack.pop();
 				frameStack.push(new Frame(destination + 1, program.get(destination)));
 				break;

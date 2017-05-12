@@ -1,10 +1,10 @@
 package com.company.SyntaxTree;
 
+import com.company.Metadata.Compiler;
 import com.company.Terminals;
 import com.company.BuildExeption;
 import com.company.VirtualMachine.Opcode;
 
-import java.util.List;
 import java.util.Objects;
 
 public class ConstantNode extends Node
@@ -18,16 +18,16 @@ public class ConstantNode extends Node
 	}
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String>methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
-		opcodes.add(Opcode.pushc.ordinal());
+		m.addOpcode(Opcode.pushc);
 
 		if(type == Terminals.BOOLEAN)
 		{
-			opcodes.add(Objects.equals(value, "true") ? 1 : 0);
+			m.addWord(Objects.equals(value, "true") ? 1 : 0);
 		} else
 		{
-			opcodes.add(Integer.parseInt(value));
+			m.addWord(Integer.parseInt(value));
 		}
 	}
 

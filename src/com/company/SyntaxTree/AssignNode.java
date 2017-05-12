@@ -1,11 +1,12 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 import com.company.VirtualMachine.Opcode;
 
-import java.util.List;
+import java.util.Objects;
 
-public class AssignNode extends ValueBody
+public class AssignNode extends ValueBodyNode
 {
 	private final String name;
 
@@ -15,15 +16,15 @@ public class AssignNode extends ValueBody
 	}
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
-		if(!varTable.contains(name))
+		if(!m.variables.stream().anyMatch(v -> Objects.equals(v.name, name)))
 			throw new BuildExeption("Переменная '%s' не существует", name);
 
-		super.compile(opcodes, varTable, methodTable);
+		super.compile(m);
 
-		opcodes.add(Opcode.pop.ordinal());
-		opcodes.add(varTable.indexOf(name));
+		m.addOpcode(Opcode.pop);
+		m.addWord(m.getVariableIndex(name));
 	}
 
 	@Override

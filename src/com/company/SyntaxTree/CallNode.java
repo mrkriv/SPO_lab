@@ -1,9 +1,9 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 import com.company.VirtualMachine.Opcode;
 
-import java.util.List;
 import java.util.Objects;
 
 public class CallNode extends BodyNode
@@ -13,24 +13,25 @@ public class CallNode extends BodyNode
 	public CallNode(String name) {this.name = name;}
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
-		if(!methodTable.contains(name))
-			throw new BuildExeption("Метод '%s' не существует", name);
+		//if(!m.methods.stream().anyMatch(i -> Objects.equals(i.name, name)))
+		//	throw new BuildExeption("Метод '%s' не существует", name);
 
-		super.compile(opcodes, varTable, methodTable);
+		super.compile(m);
 
 		if(Objects.equals(name, "print"))
 		{
-			opcodes.add(Opcode.callprint.ordinal());
+			m.addOpcode(Opcode.callprint);
 		}
-		if(Objects.equals(name, "read"))
+		else if(Objects.equals(name, "read"))
 		{
-			opcodes.add(Opcode.callread.ordinal());
-		} else
+			m.addOpcode(Opcode.callread);
+		}
+		else
 		{
-			opcodes.add(Opcode.pushm.ordinal());
-			opcodes.add(methodTable.indexOf(name));
+			m.addOpcode(Opcode.callc);
+			m.addLink(name, 0);
 		}
 	}
 }

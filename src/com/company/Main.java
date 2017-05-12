@@ -1,13 +1,14 @@
 package com.company;
 
+import com.company.Metadata.Compiler;
 import com.company.SyntaxTree.BodyNode;
+import com.company.SyntaxTree.RootBodyNode;
 import com.company.VirtualMachine.Core;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main
@@ -39,23 +40,19 @@ public class Main
 
 		try
 		{
-			BodyNode root = parcer.run(tokens);
+			RootBodyNode root = parcer.run(tokens);
 
 			System.out.println("\nParcer:");
 			System.out.println(root);
 
-			List<String> methods = new ArrayList<>();
-			methods.add("print");
-			methods.add("read");
-
-			List<Integer> opcodes = new ArrayList<>();
-			root.compile(opcodes, new ArrayList<>(), methods);
+			Compiler compiler = new Compiler();
+			List<Integer> program = compiler.compile(root);
 
 			System.out.println("\nDecompile:");
-			System.out.println(vm.decompile(opcodes));
+			System.out.println(vm.decompile(program));
 
 			System.out.println("\nRun...");
-			vm.run(opcodes);
+			vm.run(program);
 
 			System.out.println("\nFinished");
 		}

@@ -1,6 +1,7 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +11,17 @@ public class BodyNode extends Node
 	final List<Node> childs = new ArrayList<>();
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
-		int varCount = varTable.size();
+		int varCount = m.variables.size();
 
 		for(Node node : childs)
 		{
-			node.compile(opcodes, varTable, methodTable);
+			node.compile(m);
 		}
 
-		while(varTable.size() > varCount)
-			varTable.remove(varTable.size() - 1);
+		while(m.variables.size() > varCount)
+			m.variables.remove(m.variables.size() - 1);
 	}
 
 	public void addChild(Node node)

@@ -5,7 +5,8 @@ public enum Opcode
 	nop,
 
 	ret,
-	call,
+	callc,
+	calls,
 	jmp,
 
 	jne,

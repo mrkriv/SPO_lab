@@ -1,9 +1,8 @@
 package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
+import com.company.Metadata.Compiler;
 import com.company.VirtualMachine.Opcode;
-
-import java.util.List;
 
 public class BranchNode extends BodyNode
 {
@@ -11,9 +10,9 @@ public class BranchNode extends BodyNode
 	public BodyNode elseBody;
 
 	@Override
-	public void compile(List<Integer> opcodes, List<String> varTable, List<String> methodTable) throws BuildExeption
+	public void compile(Compiler m) throws BuildExeption
 	{
-		condition.compile(opcodes, varTable, methodTable);
+		condition.compile(m);
 
 		Opcode cond_opcode;
 		switch(condition.operator)
@@ -30,27 +29,28 @@ public class BranchNode extends BodyNode
 				throw new BuildExeption("Неизвестный логический оператор '%s'", condition.operator);
 		}
 
-		opcodes.add(cond_opcode.ordinal());
-		opcodes.add(0);
+		m.addWord(cond_opcode.ordinal());
 
-		int start = opcodes.size();
-		super.compile(opcodes, varTable, methodTable);
+		String l_start = m.generateLocalLabelName();
+		m.addLink(l_start, 0);
+
+		super.compile(m);
 
 		if(elseBody != null)
 		{
-			opcodes.add(Opcode.jmp.ordinal());
-			opcodes.add(0);
+			m.addOpcode(Opcode.jmp);
 
-			opcodes.set(start - 1, opcodes.size());
+			String l_else = m.generateLocalLabelName();
+			m.addLink(l_else, 0);
 
-			int startElse = opcodes.size();
+			m.addLocalLabel(l_start);
 
-			elseBody.compile(opcodes, varTable, methodTable);
+			elseBody.compile(m);
 
-			opcodes.set(startElse - 1, opcodes.size());
+			m.addLocalLabel(l_else);
 		}
 		else
-			opcodes.set(start - 1, opcodes.size());
+			m.addLocalLabel(l_start);
 	}
 
 	@Override
