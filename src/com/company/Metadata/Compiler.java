@@ -43,6 +43,7 @@ public class Compiler
 		methods.add(new MethodInfo("void", "print", "int", "value"));
 		methods.add(new MethodInfo("int", "read"));
 
+		root.preCompile(this);
 		root.compile(this);
 
 		List<Integer> words = new ArrayList<>();
@@ -117,6 +118,16 @@ public class Compiler
 		{
 			if(method.name.equals(name))
 				return method;
+		}
+		return null;
+	}
+
+	public VariableInfo getVariable(String name)
+	{
+		for(VariableInfo var : variables)
+		{
+			if(var.name.equals(name))
+				return var;
 		}
 		return null;
 	}

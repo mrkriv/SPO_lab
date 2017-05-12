@@ -5,9 +5,14 @@ import com.company.Metadata.Compiler;
 
 public class RootBodyNode extends BodyNode
 {
-	@Override
-	public void compile(Compiler m) throws BuildExeption
+	public void preCompile(Compiler m) throws BuildExeption
 	{
-		super.compile(m);
+		for(Node node : childs)
+		{
+			if(node instanceof MethodNode)
+			{
+				((MethodNode)node).preCompile(m);
+			}
+		}
 	}
 }

@@ -2,6 +2,7 @@ package com.company.SyntaxTree;
 
 import com.company.BuildExeption;
 import com.company.Metadata.Compiler;
+import com.company.Metadata.MethodInfo;
 import com.company.VirtualMachine.Opcode;
 
 import java.util.Objects;
@@ -15,8 +16,10 @@ public class CallNode extends BodyNode
 	@Override
 	public void compile(Compiler m) throws BuildExeption
 	{
-		//if(!m.methods.stream().anyMatch(i -> Objects.equals(i.name, name)))
-		//	throw new BuildExeption("Метод '%s' не существует", name);
+		MethodInfo method = m.getMethod(name);
+
+		if(method == null)
+			throw new BuildExeption("Метод '%s' не существует", name);
 
 		super.compile(m);
 
@@ -32,6 +35,16 @@ public class CallNode extends BodyNode
 		{
 			m.addOpcode(Opcode.callc);
 			m.addLink(name, 0);
+
+			if(method.arguments.size() != childs.size())
+				throw new BuildExeption("Метод '%s' имеет %d параметров", name, method.arguments.size());
+
+			super.compile(m);
+
+//			for(int i = 0; i <  method.arguments.size(); i++)
+//			{
+//				childs.get(i).compile(m);
+//			}
 		}
 	}
 }

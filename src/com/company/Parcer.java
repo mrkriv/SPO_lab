@@ -115,15 +115,19 @@ class Parcer
 		String name = checkAndStep(Terminals.NAME);
 		checkAndStep(Terminals.BRACED_OPEN);
 
-		addAndPushNode(new MethodNode(type, name));
+		MethodNode node = new MethodNode(type, name);
+		addAndPushNode(node);
 
 		if(!check(Terminals.BRACED_CLOSE))
 		{
+			nodes.push(node.VariablesBody);
 			do
 			{
 				var_def_simple();
 			}
 			while(check(Terminals.COMMA));
+
+			nodes.pop();
 		}
 
 		checkAndStep(Terminals.BRACED_CLOSE);
