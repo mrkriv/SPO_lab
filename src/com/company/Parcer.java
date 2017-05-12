@@ -4,6 +4,7 @@ import com.company.SyntaxTree.*;
 import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Stack;
 
 /*
@@ -266,10 +267,21 @@ class Parcer
 	private void var_assign() throws BuildExeption
 	{
 		String name = checkAndStep(Terminals.NAME);
-		checkAndStep(Terminals.ASSIGN_OP);
+		String operator = checkAndStep(Terminals.ASSIGN_OP);
 
 		addAndPushNode(new AssignNode(name));
-		value();
+
+		if(!Objects.equals(operator, "=="))
+		{
+			addNode(new VarNameNode(name));
+			addNode(new MathOperationNode(operator.substring(0, 1)));
+			addAndPushNode(new ValueBodyNode());
+			value();
+			nodes.pop();
+		}
+		else
+			value();
+
 		nodes.pop();
 
 		checkAndStep(Terminals.LINE_END);

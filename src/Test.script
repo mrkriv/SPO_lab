@@ -11,7 +11,7 @@ int pow(int x, int s)
     int r = x;
     while(s > 1)
     {
-        x = r * x;
+        x *= r;
         s--;
     }
 
