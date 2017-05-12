@@ -10,6 +10,7 @@ public class MethodInfo
 	public final Map<String, Integer> labels;
 	public final List<Integer> words;
 	public int offest;
+	public boolean isHaveReturn;
 
 	public MethodInfo(String returnType, String name)
 	{

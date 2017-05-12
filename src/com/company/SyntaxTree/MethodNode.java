@@ -6,6 +6,7 @@ import com.company.Metadata.MethodInfo;
 import com.company.Metadata.VariableInfo;
 import com.company.VirtualMachine.Opcode;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MethodNode extends BodyNode
@@ -47,8 +48,10 @@ public class MethodNode extends BodyNode
 		m.currentMethod = m.getMethod(name);
 		m.addWord(128);
 
-		for(VariableInfo var : m.currentMethod.arguments)
+		List<VariableInfo> arguments = m.currentMethod.arguments;
+		for(int i = arguments.size() - 1; i >= 0; i--)
 		{
+			VariableInfo var = arguments.get(i);
 			m.variables.add(var);
 			m.addOpcode(Opcode.pop);
 			m.addWord(m.getVariableIndex(var.name));
@@ -56,7 +59,16 @@ public class MethodNode extends BodyNode
 
 		super.compile(m);
 
-		m.addOpcode(Opcode.ret);
+		if(!m.currentMethod.isHaveReturn)
+		{
+			if(Objects.equals(type, "void"))
+			{
+				m.addOpcode(Opcode.ret);
+			}
+			else
+				throw new BuildExeption("Метод '%s' должен возвращать значение типа '%s'", name, type);
+		}
+
 		m.currentMethod = null;
 	}
 

@@ -7,6 +7,7 @@ public enum Terminals
 	COMMENT_END,
 	VAR_TYPE,
 	NAME,
+	RETURN,
 	IF_OF,
 	ELSE,
 	FOR_OF,

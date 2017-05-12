@@ -40,7 +40,7 @@ public class WhileNode extends BodyNode
 		super.compile(m);
 
 		m.addOpcode(Opcode.jmp);
-		m.addLink(l_start, 0);
+		m.addLink(l_start, 1);
 
 		m.addLocalLabel(l_end);
 	}

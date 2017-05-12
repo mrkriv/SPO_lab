@@ -62,7 +62,7 @@ public class Compiler
 
 			if(link.source.labels.containsKey(link.label))
 			{
-				to += link.source.labels.get(link.label);
+				to += link.source.offest + link.source.labels.get(link.label);
 			}
 			else
 			{

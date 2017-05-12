@@ -39,8 +39,6 @@ public class CallNode extends BodyNode
 			if(method.arguments.size() != childs.size())
 				throw new BuildExeption("Метод '%s' имеет %d параметров", name, method.arguments.size());
 
-			super.compile(m);
-
 //			for(int i = 0; i <  method.arguments.size(); i++)
 //			{
 //				childs.get(i).compile(m);

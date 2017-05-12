@@ -8,7 +8,7 @@ import java.util.Stack;
 
 /*
 	* expr -> method | LINE_END
-	* expr_body -> var_def | while | if | var_assign | call_e | body | LINE_END
+	* expr_body -> var_def | while | if | var_assign | call_e | body | return_op | LINE_END
 	* body -> BODY_OPEN expr_body BODY_CLOSE
 	* method -> VAR_TYPE NAME BRACED_OPEN (var_def_simple (COMMA var_def_simple)* )? BRACED_CLOSE body
 	* var_def_simple -> VAR_TYPE NAME
@@ -21,6 +21,7 @@ import java.util.Stack;
 	* if -> IF_OP BRACED_OPEN condition BRACED_CLOSE body
 	* condition -> value CONDITION_OP value
 	* const_value -> DIGIT | DIGIT_NATURAL | BOOLEAN
+	* return_op -> RETURN VAR_NAME? LINE_END
 */
 
 class Parcer
@@ -75,7 +76,7 @@ class Parcer
 		}
 	}
 
-	// expr_body -> var_def | while | if | var_assign | call_e | body | LINE_END
+	// expr_body -> var_def | while | if | var_assign | call_e | body | return_op | LINE_END
 	private void expr_body() throws BuildExeption
 	{
 		while(tokens.size() > index)
@@ -91,6 +92,7 @@ class Parcer
 				tryStep(Parcer::while_operator)	||
 				tryStep(Parcer::call_e) ||
 				tryStep(Parcer::body) ||
+				tryStep(Parcer::return_op) ||
 				tryStep(Parcer::line_end))
 				continue;
 
@@ -125,7 +127,7 @@ class Parcer
 			{
 				var_def_simple();
 			}
-			while(check(Terminals.COMMA));
+			while(stepIF(Terminals.COMMA));
 
 			nodes.pop();
 		}
@@ -150,7 +152,7 @@ class Parcer
 		checkAndStep(Terminals.BRACED_CLOSE);
 
 		checkAndStep(Terminals.BODY_OPEN);
-		expr();
+		expr_body();
 		checkAndStep(Terminals.BODY_CLOSE);
 		nodes.pop();
 	}
@@ -167,7 +169,7 @@ class Parcer
 		checkAndStep(Terminals.BRACED_CLOSE);
 
 		checkAndStep(Terminals.BODY_OPEN);
-		expr();
+		expr_body();
 		checkAndStep(Terminals.BODY_CLOSE);
 
 		if(stepIF(Terminals.ELSE))
@@ -176,7 +178,7 @@ class Parcer
 			nodes.push(branch.elseBody);
 
 			checkAndStep(Terminals.BODY_OPEN);
-			expr();
+			expr_body();
 			checkAndStep(Terminals.BODY_CLOSE);
 
 			nodes.pop();
@@ -226,7 +228,7 @@ class Parcer
 				value();
 				nodes.pop();
 			}
-			while(check(Terminals.COMMA));
+			while(stepIF(Terminals.COMMA));
 		}
 
 		checkAndStep(Terminals.BRACED_CLOSE);
@@ -266,6 +268,19 @@ class Parcer
 
 		addAndPushNode(new AssignNode(name));
 		value();
+		nodes.pop();
+
+		checkAndStep(Terminals.LINE_END);
+	}
+
+	// return -> RETURN VAR_NAME? LINE_END
+	private void return_op() throws BuildExeption
+	{
+		addAndPushNode(new ReturnNode());
+
+		if(!check(Terminals.LINE_END))
+			value();
+
 		nodes.pop();
 
 		checkAndStep(Terminals.LINE_END);

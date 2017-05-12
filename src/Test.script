@@ -1,11 +1,26 @@
 void main()
 {
-    foo2(15 - 1);
+    int j = pow(2, 10);
+    print(j);
+
+    foo2(15 - 1, 2);
 }
 
 
-void foo2(int b)
+int pow(int x, int s)
+{
+    int r = x;
+    while(s > 1)
+    {
+        x = r * x;
+        s = s - 1;
+    }
+
+    return x;
+}
+
+void foo2(int b, int f)
 {
     int h = b + 2;
-    print(h);
+    print(h*f);
 }

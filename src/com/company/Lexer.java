@@ -15,6 +15,7 @@ class Lexer
 		addLex(Terminals.COMMENT_END, 	"^\\*/$");
 
 		addLex(Terminals.VAR_TYPE, 		"^(int|bool|double|float|char|void|byte|short|long)$");
+		addLex(Terminals.RETURN, 		"^return$");
 		addLex(Terminals.IF_OF, 		"^if$");
 		addLex(Terminals.ELSE, 			"^else$");
 		addLex(Terminals.FOR_OF, 		"^for$");
