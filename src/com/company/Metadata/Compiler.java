@@ -48,12 +48,19 @@ public class Compiler
 
 		List<Integer> words = new ArrayList<>();
 
+		int optimizeCounter = 0;
+
 		for(MethodInfo method : methods)
 		{
+			optimizeCounter += method.words.size();
+			optimizeMethod(method);
+			optimizeCounter -= method.words.size();
+
 			method.offest = words.size();
 			words.addAll(method.words);
-			method.words.clear();
 		}
+
+		System.out.printf("Optimize: %d words (%d %s)\n", optimizeCounter, optimizeCounter * 100 / words.size(), '%');
 
 		for(Link link : links)
 		{
@@ -79,6 +86,30 @@ public class Compiler
 		}
 
 		return words;
+	}
+
+	private void removeOpcode(MethodInfo method, int start, int count)
+	{
+		for(int n = 0; n < count; n++)
+			method.words.remove(start);
+
+		for(Map.Entry<String, Integer> label : method.labels.entrySet())
+		{
+			if(label.getValue() >= start + count)
+				label.setValue(label.getValue() - count);
+		}
+
+		for(Link link : links)
+		{
+			if(link.source != method)
+				continue;
+
+			if(link.source_offest >= start + count)
+				link.source_offest -= count;
+
+			if(link.offest >= start + count)
+				link.offest -= count;
+		}
 	}
 
 	public void addWord(int value)
@@ -154,5 +185,53 @@ public class Compiler
 			i++;
 		}
 		return -1;
+	}
+
+	private void optimizeMethod(MethodInfo method)
+	{
+		for(int i = 1; i < method.words.size(); )
+		{
+			Opcode opcode = Opcode.values()[method.words.get(i)];
+			int next = i + Opcode.getSize(opcode);
+
+			if(next >= method.words.size())
+				break;
+
+			Opcode next_opcode = Opcode.values()[method.words.get(i + Opcode.getSize(opcode))];
+
+			// Replace Push-Pop or Pop-Push to Copys (Copy from stack)
+			if(	(opcode == Opcode.pushm && next_opcode == Opcode.pop ||
+					opcode == Opcode.pop && next_opcode == Opcode.pushm ) &&
+					Objects.equals(method.words.get(i + 1), method.words.get(next + 1)))
+			{
+				int size = Opcode.getSize(opcode) + Opcode.getSize(next_opcode) - Opcode.getSize(Opcode.copys);
+				method.words.set(i, Opcode.copys.ordinal());
+
+				removeOpcode(method, i + Opcode.getSize(Opcode.copys), size);
+				continue;
+			}
+
+			if((opcode == Opcode.pushm && next_opcode == Opcode.pushm))
+			{
+				int size = Opcode.getSize(opcode) + Opcode.getSize(next_opcode) - Opcode.getSize(Opcode.pushm2);
+				method.words.set(i, Opcode.pushm2.ordinal());
+				method.words.set(i+2, method.words.get(next + 1));
+
+				removeOpcode(method, i + Opcode.getSize(Opcode.pushm2), size);
+				continue;
+			}
+
+			if((opcode == Opcode.pushc && next_opcode == Opcode.pushc))
+			{
+				int size = Opcode.getSize(opcode) + Opcode.getSize(next_opcode) - Opcode.getSize(Opcode.pushc2);
+				method.words.set(i, Opcode.pushc2.ordinal());
+				method.words.set(i+2, method.words.get(next + 1));
+
+				removeOpcode(method, i + Opcode.getSize(Opcode.pushc2), size);
+				continue;
+			}
+
+			i = next;
+		}
 	}
 }

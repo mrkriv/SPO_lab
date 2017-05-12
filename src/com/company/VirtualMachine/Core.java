@@ -14,37 +14,6 @@ public class Core
 
 	public String decompile(List<Integer> program)
 	{
-		Map<Opcode, Integer> sizeMap = new HashMap<>();
-
-		sizeMap.put(Opcode.nop, 1);
-		sizeMap.put(Opcode.ret, 1);
-		sizeMap.put(Opcode.callc, 2);
-		sizeMap.put(Opcode.calls, 1);
-		sizeMap.put(Opcode.jmp, 2);
-
-		sizeMap.put(Opcode.jne, 2);
-		sizeMap.put(Opcode.jeq, 2);
-		sizeMap.put(Opcode.jls, 2);
-		sizeMap.put(Opcode.jle, 2);
-		sizeMap.put(Opcode.jgr, 2);
-		sizeMap.put(Opcode.jge, 2);
-
-		sizeMap.put(Opcode.callprint, 1);
-		sizeMap.put(Opcode.callread, 1);
-
-		sizeMap.put(Opcode.pushm, 2);
-		sizeMap.put(Opcode.pushc, 2);
-		sizeMap.put(Opcode.pop, 2);
-
-		sizeMap.put(Opcode.comps, 1);
-
-		sizeMap.put(Opcode.addi, 1);
-		sizeMap.put(Opcode.subi, 1);
-		sizeMap.put(Opcode.muli, 1);
-		sizeMap.put(Opcode.divi, 1);
-		
-		sizeMap.put(Opcode.inc, 2);
-		sizeMap.put(Opcode.dec, 2);
 
 		StringBuilder sb = new StringBuilder();
 		int pointer = 0;
@@ -61,7 +30,7 @@ public class Core
 				Opcode opcod = Opcode.values()[program.get(pointer++)];
 				sb.append(opcod.toString()).append('\t');
 
-				for(int i = 1; i < sizeMap.get(opcod) && pointer < program.size(); i++)
+				for(int i = 1; i < Opcode.getSize(opcod) && pointer < program.size(); i++)
 					sb.append("\t").append(program.get(pointer++).toString());
 			}
 
@@ -165,9 +134,25 @@ public class Core
 				source = readInt();
 				stack.push(getFrame().localVariable[source]);
 				break;
+			case pushc2:
+				value = readInt();
+				stack.push(value);
+				value = readInt();
+				stack.push(value);
+				break;
+			case pushm2:
+				source = readInt();
+				stack.push(getFrame().localVariable[source]);
+				source = readInt();
+				stack.push(getFrame().localVariable[source]);
+				break;
 			case pop:
 				destination = readInt();
 				getFrame().localVariable[destination] = stack.pop();
+				break;
+			case copys:
+				destination = readInt();
+				getFrame().localVariable[destination] = stack.lastElement();
 				break;
 
 			case comps:
