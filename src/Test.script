@@ -1,7 +1,9 @@
 void main()
 {
     print((2+4)*10);
+
     print(pow(2, 10));
+    print(pow_rec(2, 10));
 
     foo2(15 - 1, 2);
 }
@@ -16,6 +18,16 @@ int pow(int x, int s)
     }
 
     return x;
+}
+
+int pow_rec(int x, int s)
+{
+    if(s == 1)
+    {
+        return x;
+    }
+
+    return x * pow_rec(x, s - 1);
 }
 
 void foo2(int b, int f)

@@ -1,7 +1,6 @@
 package com.company;
 
 import com.company.Metadata.Compiler;
-import com.company.SyntaxTree.BodyNode;
 import com.company.SyntaxTree.RootBodyNode;
 import com.company.VirtualMachine.Core;
 
@@ -40,6 +39,7 @@ public class Main
 
 		try
 		{
+			long timeout = System.currentTimeMillis();
 			RootBodyNode root = parcer.run(tokens);
 
 			System.out.println("\nParcer:");
@@ -48,13 +48,28 @@ public class Main
 			Compiler compiler = new Compiler();
 			List<Integer> program = compiler.compile(root);
 
+			timeout = System.currentTimeMillis() - timeout;
+			System.out.printf("\nCompilation time: %d ms\n", timeout);
+
 			System.out.println("\nDecompile:");
 			System.out.println(vm.decompile(program));
 
 			System.out.println("\nRun...");
 			vm.run(program);
+			System.out.printf("\nFinished");
 
-			System.out.println("\nFinished");
+
+			vm.enableOut = false;
+			int testCount = 500;
+
+			timeout = System.currentTimeMillis();
+			for(int i = 0; i < testCount; i++)
+			{
+				vm.run(program);
+			}
+
+			timeout = System.currentTimeMillis() - timeout;
+			System.out.printf("\nAverage execution time: %f ms (%d tests)\n", timeout/(double)testCount, testCount);
 		}
 		catch(BuildExeption exp)
 		{

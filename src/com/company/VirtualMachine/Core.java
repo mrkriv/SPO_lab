@@ -7,9 +7,11 @@ public class Core
 	private List<Integer> program;
 	private Stack<Frame> frameStack;
 	private Stack<Integer> stack;
+	public boolean enableOut;
 
 	public Core()
 	{
+		enableOut = true;
 	}
 
 	public String decompile(List<Integer> program)
@@ -120,7 +122,10 @@ public class Core
 				break;
 
 			case callprint:
-				System.out.printf(">> %d\n", stack.pop());
+				if(enableOut)
+					System.out.printf(">> %d\n", stack.pop());
+				else
+					stack.pop();
 				break;
 			case callread:
 				stack.push(new Scanner(System.in).nextInt());

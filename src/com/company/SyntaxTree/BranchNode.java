@@ -32,7 +32,7 @@ public class BranchNode extends BodyNode
 		m.addOpcode(cond_opcode);
 
 		String l_start = m.generateLocalLabelName();
-		m.addLink(l_start, 0);
+		m.addLink(l_start, 1);
 
 		super.compile(m);
 
@@ -41,7 +41,7 @@ public class BranchNode extends BodyNode
 			m.addOpcode(Opcode.jmp);
 
 			String l_else = m.generateLocalLabelName();
-			m.addLink(l_else, 0);
+			m.addLink(l_else, 1);
 
 			m.addLocalLabel(l_start);
 
