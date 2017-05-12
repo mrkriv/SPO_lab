@@ -271,7 +271,7 @@ class Parcer
 
 		addAndPushNode(new AssignNode(name));
 
-		if(!Objects.equals(operator, "=="))
+		if(!Objects.equals(operator, "="))
 		{
 			addNode(new VarNameNode(name));
 			addNode(new MathOperationNode(operator.substring(0, 1)));

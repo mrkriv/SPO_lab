@@ -7,6 +7,7 @@ public class Core
 	private List<Integer> program;
 	private Stack<Frame> frameStack;
 	private Stack<Integer> stack;
+	private StringBuilder output;
 	public boolean enableOut;
 
 	public Core()
@@ -42,9 +43,10 @@ public class Core
 		return sb.toString();
 	}
 
-	public void run(List<Integer> program)
+	public String run(List<Integer> program)
 	{
 		stack = new Stack<>();
+		output = new StringBuilder();
 
 		frameStack = new Stack<>();
 		frameStack.push(new Frame(1, program.get(0)));
@@ -53,6 +55,8 @@ public class Core
 
 		while(!frameStack.isEmpty() && getPointer() >= 0 && getPointer() < program.size())
 			step();
+
+		return output.toString();
 	}
 
 	private void step()
@@ -122,10 +126,7 @@ public class Core
 				break;
 
 			case callprint:
-				if(enableOut)
-					System.out.printf(">> %d\n", stack.pop());
-				else
-					stack.pop();
+				log(stack.pop().toString());
 				break;
 			case callread:
 				stack.push(new Scanner(System.in).nextInt());
@@ -207,6 +208,14 @@ public class Core
 	{
 		getFrame().pointer++;
 		return Opcode.values()[program.get(getPointer() - 1)];
+	}
+
+	private void log(String message)
+	{
+		if(enableOut)
+			System.out.printf(">> %s\n", message);
+
+		output.append(message).append('\n');
 	}
 
 	private Frame getFrame()
