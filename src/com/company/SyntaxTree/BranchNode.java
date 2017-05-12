@@ -29,7 +29,7 @@ public class BranchNode extends BodyNode
 				throw new BuildExeption("Неизвестный логический оператор '%s'", condition.operator);
 		}
 
-		m.addWord(cond_opcode.ordinal());
+		m.addOpcode(cond_opcode);
 
 		String l_start = m.generateLocalLabelName();
 		m.addLink(l_start, 0);

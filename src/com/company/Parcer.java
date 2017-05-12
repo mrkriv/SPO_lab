@@ -8,12 +8,13 @@ import java.util.Stack;
 
 /*
 	* expr -> method | LINE_END
-	* expr_body -> var_def | while | if | var_assign | call_e | body | return_op | LINE_END
+	* expr_body -> var_def | var_unar | while | if | var_assign | call_e | body | return_op | LINE_END
 	* body -> BODY_OPEN expr_body BODY_CLOSE
 	* method -> VAR_TYPE NAME BRACED_OPEN (var_def_simple (COMMA var_def_simple)* )? BRACED_CLOSE body
 	* var_def_simple -> VAR_TYPE NAME
 	* var_def -> var_def_simple (ASSIGN_OP value)? LINE_END
 	* var_assign -> VAR_NAME ASSIGN_OP value LINE_END
+	* var_unar -> VAR_NAME UNAR_OP LINE_END
 	* call_e -> call LINE_END
 	* call -> NAME BRACED_OPEN (value (COMMA value)* )? BRACED_CLOSE LINE_END
 	* value -> ( BRACED_OPEN value BRACED_OPEN ) | ( (const_value|NAME|call) (MATH_OP value)? )
@@ -76,7 +77,7 @@ class Parcer
 		}
 	}
 
-	// expr_body -> var_def | while | if | var_assign | call_e | body | return_op | LINE_END
+	// expr_body -> var_def | var_unar | while | if | var_assign | call_e | body | return_op | LINE_END
 	private void expr_body() throws BuildExeption
 	{
 		while(tokens.size() > index)
@@ -88,6 +89,7 @@ class Parcer
 
 			if(	tryStep(Parcer::var_def) ||
 				tryStep(Parcer::var_assign)	||
+				tryStep(Parcer::var_unar) ||
 				tryStep(Parcer::if_operator) ||
 				tryStep(Parcer::while_operator)	||
 				tryStep(Parcer::call_e) ||
@@ -269,6 +271,17 @@ class Parcer
 		addAndPushNode(new AssignNode(name));
 		value();
 		nodes.pop();
+
+		checkAndStep(Terminals.LINE_END);
+	}
+
+	// var_unar -> VAR_NAME UNAR_OP LINE_END
+	private void var_unar() throws BuildExeption
+	{
+		String name = checkAndStep(Terminals.NAME);
+		String operator = checkAndStep(Terminals.UNAR_OP);
+
+		addNode(new VarUnarNode(name, operator));
 
 		checkAndStep(Terminals.LINE_END);
 	}

@@ -42,6 +42,9 @@ public class Core
 		sizeMap.put(Opcode.subi, 1);
 		sizeMap.put(Opcode.muli, 1);
 		sizeMap.put(Opcode.divi, 1);
+		
+		sizeMap.put(Opcode.inc, 2);
+		sizeMap.put(Opcode.dec, 2);
 
 		StringBuilder sb = new StringBuilder();
 		int pointer = 0;
@@ -188,6 +191,15 @@ public class Core
 			case divi:
 				value = stack.pop();
 				stack.push(stack.pop() / value);
+				break;
+
+			case inc:
+				source = readInt();
+				getFrame().localVariable[source]++;
+				break;
+			case dec:
+				source = readInt();
+				getFrame().localVariable[source]--;
 				break;
 
 			default:

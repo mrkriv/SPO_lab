@@ -29,4 +29,7 @@ public enum Opcode
 	subi,
 	muli,
 	divi,
+
+	inc,
+	dec,
 }

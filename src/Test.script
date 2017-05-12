@@ -1,11 +1,10 @@
 void main()
 {
-    int j = pow(2, 10);
-    print(j);
+    print((2+4)*10);
+    print(pow(2, 10));
 
     foo2(15 - 1, 2);
 }
-
 
 int pow(int x, int s)
 {
@@ -13,7 +12,7 @@ int pow(int x, int s)
     while(s > 1)
     {
         x = r * x;
-        s = s - 1;
+        s--;
     }
 
     return x;
