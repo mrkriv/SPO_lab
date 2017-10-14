@@ -1,0 +1,22 @@
+C:\Users\vladi\Desktop\encode_test\bin\Debug\netcoreapp2.0\encode_test.deps.json
+C:\Users\vladi\Desktop\encode_test\bin\Debug\netcoreapp2.0\encode_test.runtimeconfig.json
+C:\Users\vladi\Desktop\encode_test\bin\Debug\netcoreapp2.0\encode_test.runtimeconfig.dev.json
+C:\Users\vladi\Desktop\encode_test\bin\Debug\netcoreapp2.0\encode_test.dll
+C:\Users\vladi\Desktop\encode_test\bin\Debug\netcoreapp2.0\encode_test.pdb
+C:\Users\vladi\Desktop\encode_test\obj\Debug\netcoreapp2.0\encode_test.csprojResolveAssemblyReference.cache
+C:\Users\vladi\Desktop\encode_test\obj\Debug\netcoreapp2.0\encode_test.csproj.CoreCompileInputs.cache
+C:\Users\vladi\Desktop\encode_test\obj\Debug\netcoreapp2.0\encode_test.AssemblyInfoInputs.cache
+C:\Users\vladi\Desktop\encode_test\obj\Debug\netcoreapp2.0\encode_test.AssemblyInfo.cs
+C:\Users\vladi\Desktop\encode_test\obj\Debug\netcoreapp2.0\encode_test.dll
+C:\Users\vladi\Desktop\encode_test\obj\Debug\netcoreapp2.0\encode_test.pdb
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\bin\Debug\netcoreapp2.0\encode_test.deps.json
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\bin\Debug\netcoreapp2.0\encode_test.runtimeconfig.json
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\bin\Debug\netcoreapp2.0\encode_test.runtimeconfig.dev.json
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\bin\Debug\netcoreapp2.0\encode_test.dll
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\bin\Debug\netcoreapp2.0\encode_test.pdb
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\obj\Debug\netcoreapp2.0\encode_test.csprojResolveAssemblyReference.cache
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\obj\Debug\netcoreapp2.0\encode_test.csproj.CoreCompileInputs.cache
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\obj\Debug\netcoreapp2.0\encode_test.AssemblyInfoInputs.cache
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\obj\Debug\netcoreapp2.0\encode_test.AssemblyInfo.cs
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\obj\Debug\netcoreapp2.0\encode_test.dll
+C:\Users\vladi\OneDrive\Документы\Visual Studio 2017\Projects\encode_test\obj\Debug\netcoreapp2.0\encode_test.pdb

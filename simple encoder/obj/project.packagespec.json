@@ -1,0 +1,33 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "C:\\Users\\vladi\\OneDrive\\Документы\\Visual Studio 2017\\Projects\\encode_test\\encode_test.csproj",
+    "projectName": "encode_test",
+    "projectPath": "C:\\Users\\vladi\\OneDrive\\Документы\\Visual Studio 2017\\Projects\\encode_test\\encode_test.csproj",
+    "outputPath": "C:\\Users\\vladi\\OneDrive\\Документы\\Visual Studio 2017\\Projects\\encode_test\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "2.0.0"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
