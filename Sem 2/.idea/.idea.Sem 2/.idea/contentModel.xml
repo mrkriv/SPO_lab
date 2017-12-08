@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\RealityShift7\.Rider2017.2\system\resharper-host\local\Transient\ReSharperHost\v10\SolutionCaches\_Sem 2.508411930.00" t="ExcludeRecursive" />
+    <e p="D:\Projects\SPO_lab\Sem 2" t="IncludeFlat">
+      <e p="lab 1. simple encoder" t="IncludeRecursive">
+        <e p="AbcRus.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="input.txt" t="Include" />
+        <e p="lab 1. simple encoder.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="VoinaIMir.txt" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Sem 2.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

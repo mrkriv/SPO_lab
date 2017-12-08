@@ -1,0 +1,1 @@
+aveat: This approach will have some performance implications.  String.Concat doesn't special case collections of characters so it performs as if every character was converted to a string then concatenated as mentioned in the documentation (and it actually does). Sure this gives you a builtin way to accomplish this task, but it could be done better.
