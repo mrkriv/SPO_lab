@@ -1,0 +1,33 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 4. RSA\\lab 4. RSA.csproj",
+    "projectName": "lab 4. RSA",
+    "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 4. RSA\\lab 4. RSA.csproj",
+    "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 4. RSA\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "2.0.0"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

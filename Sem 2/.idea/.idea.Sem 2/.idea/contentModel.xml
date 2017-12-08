@@ -39,6 +39,18 @@
         </e>
         <e p="Program.cs" t="Include" />
       </e>
+      <e p="lab 4. RSA" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="lab 4. RSA.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="lab 4. RSA.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="Sem 2.sln" t="IncludeFlat" />
     </e>

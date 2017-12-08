@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\RealityShift7\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\RealityShift7\\.nuget\\packages"
+    ]
+  }
+}
