@@ -1,0 +1,11 @@
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\bin\Debug\netcoreapp2.0\lab 2. Vername.deps.json
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\bin\Debug\netcoreapp2.0\lab 2. Vername.runtimeconfig.json
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\bin\Debug\netcoreapp2.0\lab 2. Vername.runtimeconfig.dev.json
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\bin\Debug\netcoreapp2.0\lab 2. Vername.dll
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\bin\Debug\netcoreapp2.0\lab 2. Vername.pdb
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\obj\Debug\netcoreapp2.0\lab 2. Vername.csprojResolveAssemblyReference.cache
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\obj\Debug\netcoreapp2.0\lab 2. Vername.csproj.CoreCompileInputs.cache
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\obj\Debug\netcoreapp2.0\lab 2. Vername.AssemblyInfoInputs.cache
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\obj\Debug\netcoreapp2.0\lab 2. Vername.AssemblyInfo.cs
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\obj\Debug\netcoreapp2.0\lab 2. Vername.dll
+D:\Projects\SPO_lab\Sem 2\lab 2. Vername\obj\Debug\netcoreapp2.0\lab 2. Vername.pdb

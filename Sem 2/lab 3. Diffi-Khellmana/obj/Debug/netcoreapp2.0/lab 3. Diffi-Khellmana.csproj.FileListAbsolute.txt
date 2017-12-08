@@ -1,0 +1,11 @@
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\bin\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.deps.json
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\bin\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.runtimeconfig.json
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\bin\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.runtimeconfig.dev.json
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\bin\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.dll
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\bin\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.pdb
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\obj\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.csprojResolveAssemblyReference.cache
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\obj\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.csproj.CoreCompileInputs.cache
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\obj\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.AssemblyInfoInputs.cache
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\obj\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.AssemblyInfo.cs
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\obj\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.dll
+D:\Projects\SPO_lab\Sem 2\lab 3. Diffi-Khellmana\obj\Debug\netcoreapp2.0\lab 3. Diffi-Khellmana.pdb

@@ -12,43 +12,39 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Program.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/Program.cs">
+        <entry file="file://$PROJECT_DIR$/lab 3. Diffi-Khellmana/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="220">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding>
-                <marker date="1512747566704" expanded="false" signature="6:83" ph="..." />
-                <marker date="1512747566704" expanded="true" signature="109:3831" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="138:3829" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="192:276" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="339:968" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="362:447" ph="/* for real compare ... */" />
-                <marker date="1512747566704" expanded="true" signature="1031:1112" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="1175:1275" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="1347:1896" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="1653:1831" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="1988:2374" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="2065:2336" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="2118:2224" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="2245:2322" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="2431:2663" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="2745:3050" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="2867:3001" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="3130:3567" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="3244:3305" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="3342:3457" ph="{...}" />
-                <marker date="1512747566704" expanded="true" signature="3632:3823" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="6:32" ph="..." />
+                <marker date="1512754735488" expanded="true" signature="59:2308" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="79:495" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="125:489" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="513:2306" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="861:1338" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="1378:1446" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="1490:1666" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="1712:1888" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="1934:2168" ph="{...}" />
+                <marker date="1512754735488" expanded="true" signature="2225:2300" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lab 1. simple encoder.csproj" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/lab 1. simple encoder.csproj">
+      <file leaf-file-name="Program.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lab 2. Vername/Program.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="540">
+              <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+              <folding>
+                <marker date="1512751326045" expanded="false" signature="6:66" ph="..." />
+                <marker date="1512751326045" expanded="true" signature="85:840" ph="{...}" />
+                <marker date="1512751326045" expanded="true" signature="105:838" ph="{...}" />
+                <marker date="1512751326045" expanded="true" signature="151:662" ph="{...}" />
+                <marker date="1512751326045" expanded="true" signature="733:832" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,7 +52,10 @@
     </leaf>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/lab 3. Diffi-Khellmana/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lab 1. simple encoder/AbcRus.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lab 1. simple encoder/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lab 2. Vername/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -65,6 +64,8 @@
         <option value="$PROJECT_DIR$/lab 1. simple encoder/input.txt" />
         <option value="$PROJECT_DIR$/lab 1. simple encoder/VoinaIMir.txt" />
         <option value="$PROJECT_DIR$/lab 1. simple encoder/Program.cs" />
+        <option value="$PROJECT_DIR$/lab 2. Vername/Program.cs" />
+        <option value="$PROJECT_DIR$/lab 3. Diffi-Khellmana/Program.cs" />
       </list>
     </option>
   </component>
@@ -100,7 +101,22 @@
           <expand>
             <path>
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="Sem 2 (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Sem 2 (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Sem 2 (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="lab 1. simple encoder" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Sem 2 (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="lab 2. Vername" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Sem 2 (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="lab 3. Diffi-Khellmana" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
           <select />
@@ -126,7 +142,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected=".NET Project.Default">
+  <component name="RunManager" selected=".NET Project.lab 3. Diffi-Khellmana">
     <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/lab 1. simple encoder/bin/Debug/lab1.simpleencoder.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -140,6 +156,43 @@
       <option name="PROJECT_KIND" value="Console" />
       <option name="PROJECT_TFM" value=".NETFramework,Version=v4.5" />
     </configuration>
+    <configuration name="lab 2. Vername" type="DotNetProject" factoryName=".NET Project" temporary="true">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/lab 2. Vername/bin/Debug/netcoreapp2.0/lab 2. Vername.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lab 2. Vername" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/lab 2. Vername/lab 2. Vername.csproj" />
+      <option name="PROJECT_OUTPUT_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.0" />
+    </configuration>
+    <configuration name="lab 3. Diffi-Khellmana" type="DotNetProject" factoryName=".NET Project" temporary="true">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/lab 3. Diffi-Khellmana/bin/Debug/netcoreapp2.0/lab 3. Diffi-Khellmana.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lab 3. Diffi-Khellmana" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/lab 3. Diffi-Khellmana/lab 3. Diffi-Khellmana.csproj" />
+      <option name="PROJECT_OUTPUT_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.0" />
+    </configuration>
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue=".NET Project.Default" />
+      <item index="1" class="java.lang.String" itemvalue=".NET Project.lab 2. Vername" />
+      <item index="2" class="java.lang.String" itemvalue=".NET Project.lab 3. Diffi-Khellmana" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue=".NET Project.lab 3. Diffi-Khellmana" />
+        <item index="1" class="java.lang.String" itemvalue=".NET Project.lab 2. Vername" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -152,12 +205,12 @@
       <option name="presentableId" value="Default" />
       <updated>1512747216494</updated>
       <workItem from="1512747217651" duration="98000" />
-      <workItem from="1512747372791" duration="206000" />
+      <workItem from="1512747372791" duration="5203000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304000" />
+    <option name="totallyTimeSpent" value="5301000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -170,16 +223,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32873806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14166667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14166667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -235,14 +289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/lab 1. simple encoder.csproj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/input.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -259,10 +305,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/lab 1. simple encoder.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/Program.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        <state relative-caret-position="600">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding>
             <marker date="1512747566704" expanded="false" signature="6:83" ph="..." />
             <marker date="1512747566704" expanded="true" signature="109:3831" ph="{...}" />
@@ -285,6 +339,55 @@
             <marker date="1512747566704" expanded="true" signature="3244:3305" ph="{...}" />
             <marker date="1512747566704" expanded="true" signature="3342:3457" ph="{...}" />
             <marker date="1512747566704" expanded="true" signature="3632:3823" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab 1. simple encoder/AbcRus.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1512747552308" expanded="true" signature="24:713" ph="{...}" />
+            <marker date="1512747552308" expanded="true" signature="57:711" ph="{...}" />
+            <marker date="1512747552308" expanded="true" signature="280:476" ph="{...}" />
+            <marker date="1512747552308" expanded="true" signature="367:432" ph="{...}" />
+            <marker date="1512747552308" expanded="true" signature="525:596" ph="{...}" />
+            <marker date="1512747552308" expanded="true" signature="645:705" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab 2. Vername/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="29" column="1" lean-forward="false" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding>
+            <marker date="1512751326045" expanded="false" signature="6:66" ph="..." />
+            <marker date="1512751326045" expanded="true" signature="85:840" ph="{...}" />
+            <marker date="1512751326045" expanded="true" signature="105:838" ph="{...}" />
+            <marker date="1512751326045" expanded="true" signature="151:662" ph="{...}" />
+            <marker date="1512751326045" expanded="true" signature="733:832" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab 3. Diffi-Khellmana/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <marker date="1512754735488" expanded="true" signature="6:32" ph="..." />
+            <marker date="1512754735488" expanded="true" signature="59:2308" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="79:495" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="125:489" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="513:2306" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="861:1338" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="1378:1446" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="1490:1666" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="1712:1888" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="1934:2168" ph="{...}" />
+            <marker date="1512754735488" expanded="true" signature="2225:2300" ph="{...}" />
           </folding>
         </state>
       </provider>

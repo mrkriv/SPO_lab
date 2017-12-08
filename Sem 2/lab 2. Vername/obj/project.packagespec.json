@@ -1,0 +1,33 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 2. Vername\\lab 2. Vername.csproj",
+    "projectName": "lab 2. Vername",
+    "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 2. Vername\\lab 2. Vername.csproj",
+    "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 2. Vername\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "2.0.0"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

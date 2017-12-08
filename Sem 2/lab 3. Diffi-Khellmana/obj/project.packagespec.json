@@ -1,0 +1,33 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 3. Diffi-Khellmana\\lab 3. Diffi-Khellmana.csproj",
+    "projectName": "lab 3. Diffi-Khellmana",
+    "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 3. Diffi-Khellmana\\lab 3. Diffi-Khellmana.csproj",
+    "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 3. Diffi-Khellmana\\obj\\",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "target": "Package",
+          "version": "2.0.0"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

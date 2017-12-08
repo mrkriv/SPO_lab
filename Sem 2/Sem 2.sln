@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1.simpleencoder", "lab 1. simple encoder\lab 1. simple encoder.csproj", "{8B7B3655-2F41-4EB5-A87D-9877A96D1843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab 2. Vername", "lab 2. Vername\lab 2. Vername.csproj", "{6500196F-221B-4156-82E9-AA272E4A4F20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab 3. Diffi-Khellmana", "lab 3. Diffi-Khellmana\lab 3. Diffi-Khellmana.csproj", "{E5E8FBD5-F24E-4845-93A1-B5C02F0EC2B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{8B7B3655-2F41-4EB5-A87D-9877A96D1843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B7B3655-2F41-4EB5-A87D-9877A96D1843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B7B3655-2F41-4EB5-A87D-9877A96D1843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6500196F-221B-4156-82E9-AA272E4A4F20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6500196F-221B-4156-82E9-AA272E4A4F20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6500196F-221B-4156-82E9-AA272E4A4F20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6500196F-221B-4156-82E9-AA272E4A4F20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5E8FBD5-F24E-4845-93A1-B5C02F0EC2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5E8FBD5-F24E-4845-93A1-B5C02F0EC2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5E8FBD5-F24E-4845-93A1-B5C02F0EC2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5E8FBD5-F24E-4845-93A1-B5C02F0EC2B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

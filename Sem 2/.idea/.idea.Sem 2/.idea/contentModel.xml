@@ -15,6 +15,30 @@
         </e>
         <e p="VoinaIMir.txt" t="Include" />
       </e>
+      <e p="lab 2. Vername" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="lab 2. Vername.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="lab 2. Vername.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
+      <e p="lab 3. Diffi-Khellmana" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="lab 3. Diffi-Khellmana.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="lab 3. Diffi-Khellmana.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="Sem 2.sln" t="IncludeFlat" />
     </e>
