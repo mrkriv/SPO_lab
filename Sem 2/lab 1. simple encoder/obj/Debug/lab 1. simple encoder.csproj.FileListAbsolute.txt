@@ -1,0 +1,8 @@
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\bin\Debug\lab1.simpleencoder.exe
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\bin\Debug\lab1.simpleencoder.pdb
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\obj\Debug\lab 1. simple encoder.csprojResolveAssemblyReference.cache
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\obj\Debug\lab 1. simple encoder.csproj.CoreCompileInputs.cache
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\obj\Debug\lab1.simpleencoder.exe
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\obj\Debug\lab1.simpleencoder.pdb
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\bin\Debug\input.txt
+D:\Projects\SPO_lab\Sem 2\lab 1. simple encoder\bin\Debug\VoinaIMir.txt
