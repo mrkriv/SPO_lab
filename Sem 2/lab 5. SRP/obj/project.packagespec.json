@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 4. RSA\\lab 4. RSA.csproj",
-    "projectName": "lab 4. RSA",
-    "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 4. RSA\\lab 4. RSA.csproj",
-    "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 4. RSA\\obj\\",
+    "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 5. SRP\\lab 5. SRP.csproj",
+    "projectName": "lab 5. SRP",
+    "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 5. SRP\\lab 5. SRP.csproj",
+    "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 5. SRP\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback",

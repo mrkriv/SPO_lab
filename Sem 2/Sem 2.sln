@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab 3. Diffi-Khellmana", "l
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab 4. RSA", "lab 4. RSA\lab 4. RSA.csproj", "{B61C5F28-BB8C-43C2-A889-947CF3F99B18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab 5. SRP", "lab 5. SRP\lab 5. SRP.csproj", "{7D36E059-463D-4471-A4E9-30B441B58626}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B61C5F28-BB8C-43C2-A889-947CF3F99B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61C5F28-BB8C-43C2-A889-947CF3F99B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61C5F28-BB8C-43C2-A889-947CF3F99B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D36E059-463D-4471-A4E9-30B441B58626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D36E059-463D-4471-A4E9-30B441B58626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D36E059-463D-4471-A4E9-30B441B58626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D36E059-463D-4471-A4E9-30B441B58626}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

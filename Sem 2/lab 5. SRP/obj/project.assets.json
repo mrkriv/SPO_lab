@@ -671,11 +671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 2. Vername\\lab 2. Vername.csproj",
-      "projectName": "lab 2. Vername",
-      "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 2. Vername\\lab 2. Vername.csproj",
+      "projectUniqueName": "D:\\Projects\\SPO_lab\\Sem 2\\lab 5. SRP\\lab 5. SRP.csproj",
+      "projectName": "lab 5. SRP",
+      "projectPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 5. SRP\\lab 5. SRP.csproj",
       "packagesPath": "C:\\Users\\RealityShift7\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 2. Vername\\obj\\",
+      "outputPath": "D:\\Projects\\SPO_lab\\Sem 2\\lab 5. SRP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback",
